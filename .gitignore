@@ -9,7 +9,10 @@ pmd-bin
 Classes/
 CSV2HTML_by_Java/junit/test-report/
 CSV2HTML_by_Java/CSV2HTML.app/Contents/Resources/Java/
+csv2html.jar
 
 ### Python ###
+__pycache__
+.pyenv/
 pylintresult.txt
 CSV2HTML_by_Python/CSV2HTML.app/Contents/Resources/Python/

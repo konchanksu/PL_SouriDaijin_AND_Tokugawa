@@ -14,7 +14,7 @@ clean:
 	$(ANT) clean
 	@find . -maxdepth 1 -name "$(PMD_REPORT_HTML)" -exec echo rm -f {} ";" -exec rm -f {} ";"
 
-test: all
+test:
 	$(ANT) test
 
 install:
