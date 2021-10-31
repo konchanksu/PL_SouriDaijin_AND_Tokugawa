@@ -6,10 +6,10 @@ out/
 ### Java ###
 pmd/
 pmd-bin
-junit/
 Classes/
-*/CSV2HTML.app/Contents/Resources/Java/
+CSV2HTML_by_Java/junit/test-report/
+CSV2HTML_by_Java/CSV2HTML.app/Contents/Resources/Java/
 
 ### Python ###
 pylintresult.txt
-*/CSV2HTML.app/Contents/Resources/Python/
+CSV2HTML_by_Python/CSV2HTML.app/Contents/Resources/Python/
