@@ -1,0 +1,15 @@
+.DS_Store
+.vscode/
+.idea/
+out/
+
+### Java ###
+pmd/
+pmd-bin
+junit/
+Classes/
+*/CSV2HTML.app/Contents/Resources/Java/
+
+### Python ###
+pylintresult.txt
+*/CSV2HTML.app/Contents/Resources/Python/
