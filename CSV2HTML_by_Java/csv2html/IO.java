@@ -66,11 +66,11 @@ public abstract class IO extends Object
 	public static String htmlCanonicalString(String aString)
 	{
 		Map<String,String> table = new HashMap<>();
-		table.put("&", "&amp");
-		table.put(">", "&gt");
-		table.put("<", "&lt");
-		table.put("\"", "&quot");
-		table.put(" ", "&nbsp");
+		table.put("&", "&amp;");
+		table.put(">", "&gt;");
+		table.put("<", "&lt;");
+		table.put("\"", "&quot;");
+		table.put(" ", "&nbsp;");
 		table.put("\t", "");
 		table.put("\r", "");
 		table.put("\n", "<br>");
