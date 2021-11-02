@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import utility.ImageUtility;
 
 /**
@@ -97,13 +98,16 @@ public class Table extends Object
 	}
 
 	/**
-	 * TODO
 	 * 画像またはサムネイル画像の文字列を受けとって当該画像を応答する。
 	 * @param aString 画像またはサムネイル画像の文字列
-	 * @return 画像
+	 * @return 画像。存在しない場合はnull
 	 */
 	private BufferedImage picture(String aString)
 	{
+		File imageFile = new File(this.attributes().baseDirectory()+aString);
+		if(imageFile.exists()){
+			return ImageUtility.readImageFromFile(imageFile);
+		}
 		return null;
 	}
 
