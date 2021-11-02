@@ -3,6 +3,7 @@ package csv2html;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
+
 import utility.ImageUtility;
 
 /**
@@ -27,6 +28,11 @@ public class Downloader extends IO
 	 */
 	public void downloadCSV()
 	{
+		String csvUrl = super.attributes().csvUrl();
+		List<String> splitUrl = IO.splitString(csvUrl, "/");
+		File csvFile = new File(super.attributes().baseDirectory()+splitUrl.get(splitUrl.size()-1));
+		List<String> csvText = IO.readTextFromURL(csvUrl);
+		IO.writeText(csvText, csvFile);
 		return;
 	}
 
@@ -48,6 +54,10 @@ public class Downloader extends IO
 	 */
 	private void downloadPictures(int indexOfPicture)
 	{
+		super.table().tuples().forEach((tuple)->{
+			String pictureName = tuple.values().get(indexOfPicture);
+			BufferedImage anImage = ImageUtility.readImageFromURL(super.attributes().baseUrl()+pictureName);
+		});
 		return;
 	}
 
@@ -68,6 +78,10 @@ public class Downloader extends IO
 	 */
 	public void perform()
 	{
+		this.downloadCSV();
+		new Reader(super.table()).perform();
+		this.downloadImages();
+		this.downloadThumbnails();
 		return;
 	}
 }
