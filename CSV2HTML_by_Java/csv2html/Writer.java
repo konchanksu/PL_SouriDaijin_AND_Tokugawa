@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Calendar;
+
 import utility.StringUtility;
 
 /**
@@ -59,6 +59,7 @@ public class Writer extends IO
 	 */
 	public void writeAttributesOn(BufferedWriter aWriter)
 	{
+		
 		return;
 	}
 
@@ -79,6 +80,7 @@ public class Writer extends IO
 	 */
 	public void writeHeaderOn(BufferedWriter aWriter)
 	{
+		
 		return;
 	}
 

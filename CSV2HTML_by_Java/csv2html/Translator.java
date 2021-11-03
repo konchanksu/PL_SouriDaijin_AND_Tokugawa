@@ -1,13 +1,12 @@
 package csv2html;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
+
+import utility.StringUtility;
 
 /**
  * トランスレータ：CSVファイルをHTMLページへと変換するプログラム。
@@ -50,14 +49,30 @@ public class Translator extends Object
 	}
 
 	/**
-	 * TODO
 	 * 在位日数を計算して、それを文字列にして応答する。
 	 * @param periodString 在位期間の文字列
 	 * @return 在位日数の文字列
 	 */
 	public String computeNumberOfDays(String periodString)
 	{
-		return null;
+		String periodSeparator = "〜";
+		String dateSeparator = "年月日";
+
+		Function <String,Calendar>  dateToCalender =(date)->{
+			List<String> splitDateString = StringUtility.splitString(date, dateSeparator);
+			List<Integer> splitDateInteger = splitDateString.stream().map((aString)->Integer.valueOf(aString)).toList();
+			Calendar aCalendar = Calendar.getInstance();
+			aCalendar.set(splitDateInteger.get(0),splitDateInteger.get(1)-1,splitDateInteger.get(2));
+			return aCalendar;
+		};
+
+		List<String> splitPeriod = StringUtility.splitString(periodString, periodSeparator);
+		Calendar start = dateToCalender.apply(splitPeriod.get(0));
+		Calendar end = (splitPeriod.size() == 2) ? dateToCalender.apply(splitPeriod.get(1)) : Calendar.getInstance();
+		Long diffMillis = end.getTimeInMillis()-start.getTimeInMillis();
+		Long diffDay = diffMillis/(60*60*24*1000)+1;
+
+		return String.format("%,d", diffDay);
 	}
 
 	/**
@@ -124,6 +139,7 @@ public class Translator extends Object
 	 */
 	public void translate()
 	{
+		
 		return;
 	}
 }
