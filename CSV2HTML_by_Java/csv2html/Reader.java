@@ -31,7 +31,7 @@ public class Reader extends IO
 		File csvFile = new File(super.attributes().baseDirectory(), splitUrl.get(splitUrl.size() - 1));
 		List<List<String>> csvText = StringUtility.readRowsFromFile(csvFile);
 
-		if(csvText.size() == 0){
+		if(csvText.isEmpty()){
 			return;
 		}
 
