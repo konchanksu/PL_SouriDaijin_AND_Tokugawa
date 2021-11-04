@@ -6,6 +6,7 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
+import os # これは必要になったから勝手に足した
 # import csv
 
 class IO:
@@ -25,9 +26,11 @@ class IO:
 	def read_csv(self, filename):
 		"""指定されたファイルをCSVとして読み込み、行リストを応答する。"""
 
-		(lambda x: x)(filename) # NOP
+		row_list = []
+		with open(filename, "r") as f:
+			row_list = [line.rstrip(os.linesep) for line in f]
 
-		return (lambda x: x)(self) # answer something
+		return row_list
 
 	@classmethod
 	def html_canonical_string(cls, a_string):
