@@ -65,3 +65,7 @@ class IO:
 
 	def write_csv(self, filename, rows):
 		"""指定されたファイルにCSVとして行たち(rows)を書き出す。"""
+
+		rows = list(map(lambda row: ", ".join(row)+os.linesep, rows))
+		with open(filename, "w") as f:
+			f.writelines(rows)
