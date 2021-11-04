@@ -47,10 +47,10 @@ class IO:
 			'\f' : '',
 		}
 
-		(lambda x: x)(a_string) # NOP
-		(lambda x: x)(table) # NOP
+		for key, value in table.items():
+			a_string.replace(key, value)
 
-		return (lambda x: x)(cls) # answer something
+		return a_string
 
 	def table(self):
 		"""テーブルを応答する。"""
