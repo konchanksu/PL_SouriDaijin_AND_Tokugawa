@@ -6,8 +6,7 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
-import os # これは必要になったから勝手に足した
-# import csv
+import csv
 
 class IO:
 	"""入出力：リーダ・ダウンローダ・ライタを抽象する。"""
@@ -28,7 +27,7 @@ class IO:
 
 		row_list = []
 		with open(filename, "r") as f:
-			row_list = [line.rstrip(os.linesep) for line in f]
+			row_list = list(csv.reader(f))
 
 		return row_list
 
@@ -66,6 +65,6 @@ class IO:
 	def write_csv(self, filename, rows):
 		"""指定されたファイルにCSVとして行たち(rows)を書き出す。"""
 
-		rows = list(map(lambda row: ", ".join(row)+os.linesep, rows))
 		with open(filename, "w") as f:
-			f.writelines(rows)
+			writer = csv.writer(f)
+			writer.writerows(rows)
