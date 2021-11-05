@@ -34,9 +34,12 @@ class Downloader(IO):
 
         url = super().attributes().csv_url()
         local_csv_file = super().attributes().base_directory() + os.sep + os.path.basename(url)
+
         with urllib.request.urlopen(url) as a_file:
-            data = a_file.read().decode('utf-8')
-        print(data)
+            csv_text = a_file.read().decode('utf-8')
+
+        with open(local_csv_file, "w") as a_file:
+            a_file.write(csv_text)
 
 
     def download_images(self, image_filenames):
@@ -47,5 +50,4 @@ class Downloader(IO):
 
     def perform(self):
         """すべて（情報を記したCSVファイル・画像ファイル群・縮小画像ファイル群）をダウンロードする。"""
-
         self.download_csv()
