@@ -6,7 +6,7 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
-# import datetime
+import datetime
 # import locale
 import os
 import os.path
@@ -18,7 +18,7 @@ import subprocess
 from csv2html.downloader import Downloader
 # from csv2html.io import IO
 from csv2html.table import Table
-# from csv2html.tuple import Tuple
+from csv2html.tuple import Tuple
 from csv2html.writer import Writer
 
 # pylint: disable=R0201
@@ -55,21 +55,21 @@ class Translator:
 
 		# トランスレータに入力となるテーブルを渡して変換してもらい、
 		# 出力となるテーブルを獲得する。
-		print(self._input_table)
+		# print(self._input_table)
 		self.translate()
 		print(self._output_table)
 
 		# ライタに出力となるテーブルを渡して、
 		# Webページを作成してもらう。
-		a_writer = Writer(self._output_table)
-		a_writer.perform()
+		# a_writer = Writer(self._output_table)
+		# a_writer.perform()
 
 		# 作成したページをウェブブラウザで閲覧する。
-		class_attributes = self._output_table.attributes().__class__
-		base_directory = class_attributes.base_directory()
-		index_html = class_attributes.index_html()
-		a_command = "open -a 'Safari' " + base_directory + os.sep + index_html
-		subprocess.getoutput(a_command)
+		# class_attributes = self._output_table.attributes().__class__
+		# base_directory = class_attributes.base_directory()
+		# index_html = class_attributes.index_html()
+		# a_command = "open -a 'Safari' " + base_directory + os.sep + index_html
+		# subprocess.getoutput(a_command)
 
 	@classmethod
 	def perform(cls, class_attributes):
@@ -83,4 +83,25 @@ class Translator:
 	def translate(self):
 		"""CSVファイルを基にしたテーブルから、HTMLページを基にするテーブルに変換する。"""
 
-		(lambda x: x)(self) # NOP
+		# 名前を設定する
+		input_key = self._input_table.attributes().keys()
+		output_key = self._output_table.attributes().keys()
+		for index, key in enumerate(output_key):
+			if key in input_key:
+				self._output_table.attributes().names()[index] = self._input_table.attributes().names()[input_key.index(key)]
+			elif key == "days":
+				self._output_table.attributes().names()[index] = "在位日数"
+
+		# タプルを設定する
+		for a_tuple in self._input_table.tuples():
+			values = []
+			for key in self._output_table.attributes().keys():
+				if key == "days":
+					values.append(self.compute_string_of_days(a_tuple.values()[input_key.index("period")]))
+				if key == "images":
+					values.append(self.compute_string_of_image(a_tuple))
+				elif key in input_key:
+					values.append(a_tuple.values()[input_key.index(key)])
+
+			self._output_table.add(Tuple(self._output_table.attributes(), values))
+
