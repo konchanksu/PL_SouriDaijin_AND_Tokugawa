@@ -2,9 +2,10 @@ package csv2html;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import utility.StringUtility;
 
 /**
@@ -58,14 +59,28 @@ public abstract class IO extends Object
 	}
 
 	/**
-	 * TODO
 	 * 指定された文字列をHTML内に記述できる正式な文字列に変換して応答する。
 	 * @param aString 文字列
 	 * @return HTML内に記述できる正式な文字列
 	 */
 	public static String htmlCanonicalString(String aString)
 	{
-		return null;
+		Map<String,String> table = new HashMap<>();
+		table.put("&", "&amp;");
+		table.put(">", "&gt;");
+		table.put("<", "&lt;");
+		table.put("\"", "&quot;");
+		table.put(" ", "&nbsp;");
+		table.put("\t", "");
+		table.put("\r", "");
+		table.put("\n", "<br>");
+		table.put("\f", "");
+
+		for(Map.Entry<String,String> entry : table.entrySet()){
+			aString = aString.replaceAll(entry.getKey(), entry.getValue());
+		}
+
+		return aString;
 	}
 
 	/**
