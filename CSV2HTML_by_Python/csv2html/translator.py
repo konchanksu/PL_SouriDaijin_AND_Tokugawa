@@ -10,7 +10,7 @@ import datetime
 # import locale
 import os
 import os.path
-# import re
+import re
 import subprocess
 
 # from PIL import Image
@@ -37,8 +37,16 @@ class Translator:
 
 	def compute_string_of_days(self, period):
 		"""在位日数を計算して、それを文字列にして応答する。"""
+		start, end = period.split("〜")
+		start = list(map(int, re.split('年|月|日', start)[:-1]))
+		start = datetime.datetime(*start)
+		if end == "":
+			end = datetime.datetime.now()
+		else:
+			end = list(map(int, re.split('年|月|日', end)[:-1]))
+			end = datetime.datetime(*end)
 
-		return "tmp2" # answer something
+		return str((end - start).days + 1)
 
 	def compute_string_of_image(self, a_tuple):
 		"""サムネイル画像から画像へ飛ぶためのHTML文字列を作成して、それを応答する。"""
