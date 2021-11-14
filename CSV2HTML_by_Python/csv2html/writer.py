@@ -60,16 +60,16 @@ class Writer(IO):
 		for index, a_tuple in enumerate(super().tuples()):
 			body.append('						<tr>')
 			for a_item in a_tuple.values():
-				body.append(f'							<td class="{center_color[index%2]}"><strong>{a_item}</strong></td>')
+				body.append(f'							<td class="{center_color[index%2]}">{a_item}</td>')
 			body.append('						</tr>')
 
 		body.append('''
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
 		''')
 		file.write(
 			os.linesep.join(body) + os.linesep
@@ -79,7 +79,7 @@ class Writer(IO):
 		"""フッタを書き出す。"""
 		footer = [
 			'<hr>',
-			f'<div class="right-small">Created by Koncha {datetime.datetime}</div>',
+			f'<div class="right-small">Created by Koncha {datetime.datetime.now()}</div>',
 			'</body>',
 			'</html>',
 		]
@@ -101,74 +101,74 @@ class Writer(IO):
 			f"<meta name=\"descriptio\" content=\"{self.attributes().title_string()}\">",
 			f'<meta name="author" content="Konchan">',
 			'''
-			<style type="text/css">
-			<!--
-			body {
-				background-color : #ffffff;
-				margin : 20px;
-				padding : 10px;
-				font-family : serif;
-				font-size : 10pt;
-			}
-			a {
-				text-decoration : underline;
-				color : #000000;
-			}
-			a:link {
-				background-color : #ffddbb;
-			}
-			a:visited {
-				background-color : #ccffcc;
-			}
-			a:hover {
-				background-color : #dddddd;
-			}
-			a:active {
-				background-color : #dddddd;
-			}
-			div.belt {
-				background-color : #eeeeee;
-				padding : 0px 4px;
-			}
-			div.right-small {
-				text-align : right;
-				font-size : 8pt;
-			}
-			img.borderless {
-				border-width : 0px;
-				vertical-align : middle;
-			}
-			table.belt {
-				border-style : solid;
-				border-width : 0px;
-				border-color : #000000;
-				background-color : #ffffff;
-				padding : 0px 0px;
-				width : 100%;
-			}
-			table.content {
-				border-style : solid;
-				border-width : 0px;
-				border-color : #000000;
-				padding : 2px 2px;
-			}
-			td.center-blue {
-				padding : 2px 2px;
-				text-align : center;
-				background-color : #ddeeff;
-			}
-			td.center-pink {
-				padding : 2px 2px;
-				text-align : center;
-				background-color : #ffddee;
-			}
-			td.center-yellow {
-				padding : 2px 2px;
-				text-align : center;
-				background-color : #ffffcc;
-			}
-			-->
-			</style>
+<style type="text/css">
+<!--
+body {
+	background-color : #ffffff;
+	margin : 20px;
+	padding : 10px;
+	font-family : serif;
+	font-size : 10pt;
+}
+a {
+	text-decoration : underline;
+	color : #000000;
+}
+a:link {
+	background-color : #ffddbb;
+}
+a:visited {
+	background-color : #ccffcc;
+}
+a:hover {
+	background-color : #dddddd;
+}
+a:active {
+	background-color : #dddddd;
+}
+div.belt {
+	background-color : #eeeeee;
+	padding : 0px 4px;
+}
+div.right-small {
+	text-align : right;
+	font-size : 8pt;
+}
+img.borderless {
+	border-width : 0px;
+	vertical-align : middle;
+}
+table.belt {
+	border-style : solid;
+	border-width : 0px;
+	border-color : #000000;
+	background-color : #ffffff;
+	padding : 0px 0px;
+	width : 100%;
+}
+table.content {
+	border-style : solid;
+	border-width : 0px;
+	border-color : #000000;
+	padding : 2px 2px;
+}
+td.center-blue {
+	padding : 2px 2px;
+	text-align : center;
+	background-color : #ddeeff;
+}
+td.center-pink {
+	padding : 2px 2px;
+	text-align : center;
+	background-color : #ffddee;
+}
+td.center-yellow {
+	padding : 2px 2px;
+	text-align : center;
+	background-color : #ffffcc;
+}
+-->
+</style>
 			''',
 			f'<title>{self.attributes().title_string()}</title>',
 			'</head>',

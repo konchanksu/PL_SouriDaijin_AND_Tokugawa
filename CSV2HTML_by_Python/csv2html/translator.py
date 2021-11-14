@@ -42,8 +42,10 @@ class Translator:
 
 	def compute_string_of_image(self, a_tuple):
 		"""サムネイル画像から画像へ飛ぶためのHTML文字列を作成して、それを応答する。"""
-
-		return "tmp" # answer something
+		no = a_tuple.values()[self._input_table.attributes().keys().index("no")]
+		image_file = a_tuple.values()[self._input_table.attributes().keys().index("image")]
+		thumbnail_file = a_tuple.values()[self._input_table.attributes().keys().index("thumbnail")]
+		return f'<a name="{no}" href="{image_file}"> <img class="borderless" src={thumbnail_file} width="25" height="32" alt="{thumbnail_file}"></a>'
 
 	def execute(self):
 		"""CSVファイルをHTMLページへと変換する。"""
@@ -98,7 +100,7 @@ class Translator:
 			for key in self._output_table.attributes().keys():
 				if key == "days":
 					values.append(self.compute_string_of_days(IO.html_canonical_string(a_tuple.values()[input_key.index("period")])))
-				if key == "images":
+				elif key == "image":
 					values.append(self.compute_string_of_image(a_tuple))
 				elif key in input_key:
 					values.append(IO.html_canonical_string(a_tuple.values()[input_key.index(key)]))
