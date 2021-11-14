@@ -16,7 +16,7 @@ import subprocess
 # from PIL import Image
 
 from csv2html.downloader import Downloader
-# from csv2html.io import IO
+from csv2html.io import IO
 from csv2html.table import Table
 from csv2html.tuple import Tuple
 from csv2html.writer import Writer
@@ -38,12 +38,12 @@ class Translator:
 	def compute_string_of_days(self, period):
 		"""在位日数を計算して、それを文字列にして応答する。"""
 
-		return (lambda x: x)(period) # answer something
+		return "tmp2" # answer something
 
 	def compute_string_of_image(self, a_tuple):
 		"""サムネイル画像から画像へ飛ぶためのHTML文字列を作成して、それを応答する。"""
 
-		return (lambda x: x)(a_tuple) # answer something
+		return "tmp" # answer something
 
 	def execute(self):
 		"""CSVファイルをHTMLページへと変換する。"""
@@ -57,19 +57,19 @@ class Translator:
 		# 出力となるテーブルを獲得する。
 		# print(self._input_table)
 		self.translate()
-		print(self._output_table)
+		# print(self._output_table)
 
 		# ライタに出力となるテーブルを渡して、
 		# Webページを作成してもらう。
-		# a_writer = Writer(self._output_table)
-		# a_writer.perform()
+		a_writer = Writer(self._output_table)
+		a_writer.perform()
 
 		# 作成したページをウェブブラウザで閲覧する。
-		# class_attributes = self._output_table.attributes().__class__
-		# base_directory = class_attributes.base_directory()
-		# index_html = class_attributes.index_html()
-		# a_command = "open -a 'Safari' " + base_directory + os.sep + index_html
-		# subprocess.getoutput(a_command)
+		class_attributes = self._output_table.attributes().__class__
+		base_directory = class_attributes.base_directory()
+		index_html = class_attributes.index_html()
+		a_command = "open -a 'Safari' " + base_directory + os.sep + index_html
+		subprocess.getoutput(a_command)
 
 	@classmethod
 	def perform(cls, class_attributes):
@@ -97,11 +97,11 @@ class Translator:
 			values = []
 			for key in self._output_table.attributes().keys():
 				if key == "days":
-					values.append(self.compute_string_of_days(a_tuple.values()[input_key.index("period")]))
+					values.append(self.compute_string_of_days(IO.html_canonical_string(a_tuple.values()[input_key.index("period")])))
 				if key == "images":
 					values.append(self.compute_string_of_image(a_tuple))
 				elif key in input_key:
-					values.append(a_tuple.values()[input_key.index(key)])
+					values.append(IO.html_canonical_string(a_tuple.values()[input_key.index(key)]))
 
 			self._output_table.add(Tuple(self._output_table.attributes(), values))
 
