@@ -4,7 +4,8 @@
 out/
 
 ### Java ###
-pmd/
+CSV2HTML_by_Java/pmd/*
+!CSV2HTML_by_Java/pmd/pmd-rules.xml
 pmd-bin
 Classes/
 CSV2HTML_by_Java/junit/test-report/
