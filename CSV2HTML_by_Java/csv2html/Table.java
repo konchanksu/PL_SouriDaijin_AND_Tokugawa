@@ -10,8 +10,7 @@ import utility.ImageUtility;
 /**
  * 表：情報テーブル。
  */
-public class Table extends Object
-{
+public class Table extends Object {
 	/**
 	 * 属性リストを記憶するフィールド。
 	 */
@@ -36,8 +35,7 @@ public class Table extends Object
 	 * テーブルのコンストラクタ。
 	 * @param instanceOfAttributes 属性リスト
 	 */
-	public Table(Attributes instanceOfAttributes)
-	{
+	public Table(Attributes instanceOfAttributes) {
 		super();
 
 		this.attributes = instanceOfAttributes;
@@ -52,8 +50,7 @@ public class Table extends Object
 	 * タプルを追加する。
 	 * @param aTuple タプル
 	 */
-	public void add(Tuple aTuple)
-	{
+	public void add(Tuple aTuple) {
 		this.tuples().add(aTuple);
 
 		return;
@@ -63,8 +60,7 @@ public class Table extends Object
 	 * 属性リストを応答する。
 	 * @return 属性リスト
 	 */
-	public Attributes attributes()
-	{
+	public Attributes attributes() {
 		return this.attributes;
 	}
 
@@ -72,8 +68,7 @@ public class Table extends Object
 	 * 属性リストを設定する。
 	 * @param instanceOfAttributes 属性リスト
 	 */
-	public void attributes(Attributes instanceOfAttributes)
-	{
+	public void attributes(Attributes instanceOfAttributes) {
 		this.attributes = instanceOfAttributes;
 
 		return;
@@ -83,12 +78,12 @@ public class Table extends Object
 	 * 画像群を応答する。
 	 * @return 画像群
 	 */
-	public List<BufferedImage> images()
-	{
-		if (this.images != null) { return this.images; }
+	public List<BufferedImage> images() {
+		if (this.images != null) {
+			return this.images;
+		}
 		this.images = new ArrayList<BufferedImage>();
-		for (Tuple aTuple : this.tuples())
-		{
+		for (Tuple aTuple : this.tuples()) {
 			String aString = aTuple.values().get(aTuple.attributes().indexOfImage());
 			BufferedImage anImage = this.picture(aString);
 			this.images.add(anImage);
@@ -102,10 +97,9 @@ public class Table extends Object
 	 * @param aString 画像またはサムネイル画像の文字列
 	 * @return 画像。存在しない場合はnull
 	 */
-	private BufferedImage picture(String aString)
-	{
-		File imageFile = new File(this.attributes().baseDirectory()+aString);
-		if(imageFile.exists()){
+	private BufferedImage picture(String aString) {
+		File imageFile = new File(this.attributes().baseDirectory(), aString);
+		if (imageFile.exists()) {
 			return ImageUtility.readImageFromFile(imageFile);
 		}
 		return null;
@@ -115,12 +109,12 @@ public class Table extends Object
 	 * サムネイル画像群を応答する。
 	 * @return サムネイル画像群
 	 */
-	public List<BufferedImage> thumbnails()
-	{
-		if (thumbnails != null) { return this.thumbnails; }
+	public List<BufferedImage> thumbnails() {
+		if (thumbnails != null) {
+			return this.thumbnails;
+		}
 		this.thumbnails = new ArrayList<BufferedImage>();
-		for (Tuple aTuple : this.tuples())
-		{
+		for (Tuple aTuple : this.tuples()) {
 			String aString = aTuple.values().get(aTuple.attributes().indexOfThumbnail());
 			BufferedImage anImage = this.picture(aString);
 			this.thumbnails.add(anImage);
@@ -133,15 +127,13 @@ public class Table extends Object
 	 * 自分自身を文字列にして、それを応答する。
 	 * @return 自分自身の文字列
 	 */
-	public String toString()
-	{
+	public String toString() {
 		StringBuffer aBuffer = new StringBuffer();
 		Class<?> aClass = this.getClass();
 		aBuffer.append(aClass.getName());
 		aBuffer.append("[");
 		aBuffer.append(this.attributes());
-		for (Tuple aTuple : this.tuples())
-		{
+		for (Tuple aTuple : this.tuples()) {
 			aBuffer.append(",");
 			aBuffer.append(aTuple);
 		}
@@ -154,9 +146,10 @@ public class Table extends Object
 	 * タプル群を応答する。
 	 * @return タプル群
 	 */
-	public List<Tuple> tuples()
-	{
-		if (this.tuples != null) { return this.tuples; }
+	public List<Tuple> tuples() {
+		if (this.tuples != null) {
+			return this.tuples;
+		}
 		this.tuples = new ArrayList<Tuple>();
 
 		return this.tuples;

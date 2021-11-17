@@ -62,6 +62,9 @@ public class Translator extends Object {
 
 		Function<String, Calendar> dateToCalender = (date) -> {
 			List<String> splitDateString = StringUtility.splitString(date, dateSeparator);
+			if (splitDateString.size() != 3) {
+				throw new IllegalArgumentException("日付の文字列に誤りがあります。");
+			}
 
 			List<Integer> splitDateInteger = splitDateString.stream().map((aString) -> Integer.valueOf(aString))
 					.toList();
