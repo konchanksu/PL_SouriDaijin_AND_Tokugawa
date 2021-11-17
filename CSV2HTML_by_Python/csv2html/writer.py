@@ -99,7 +99,7 @@ class Writer(IO):
 			"<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">",
 			"<meta name=\"keywords\" content=\"Smalltalk,Oriented,Programming\">",
 			f"<meta name=\"descriptio\" content=\"{self.attributes().title_string()}\">",
-			f'<meta name="author" content="Konchan">',
+			'<meta name="author" content="Konchan">',
 			'''
 <style type="text/css">
 <!--

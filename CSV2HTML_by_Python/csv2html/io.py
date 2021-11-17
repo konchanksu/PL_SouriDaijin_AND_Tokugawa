@@ -26,8 +26,8 @@ class IO:
 		"""指定されたファイルをCSVとして読み込み、行リストを応答する。"""
 
 		row_list = []
-		with open(filename, "r") as f:
-			row_list = list(csv.reader(f))
+		with open(filename, "r") as a_file:
+			row_list = list(csv.reader(a_file))
 
 		return row_list
 
@@ -65,6 +65,6 @@ class IO:
 	def write_csv(self, filename, rows):
 		"""指定されたファイルにCSVとして行たち(rows)を書き出す。"""
 
-		with open(filename, "w") as f:
-			writer = csv.writer(f)
+		with open(filename, "w") as a_file:
+			writer = csv.writer(a_file)
 			writer.writerows(rows)

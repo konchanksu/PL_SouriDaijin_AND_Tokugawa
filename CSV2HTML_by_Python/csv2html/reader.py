@@ -27,7 +27,6 @@ class Reader(IO):
 		local_csv_file = super().attributes().base_directory() + os.sep + os.path.basename(url)
 		rows = super().read_csv(local_csv_file)
 
-		# これやるくらいならgetterとsetterを用意した方が良さそう
 		for index, name in enumerate(rows[0]):
 			super().attributes().names()[index] = name
 

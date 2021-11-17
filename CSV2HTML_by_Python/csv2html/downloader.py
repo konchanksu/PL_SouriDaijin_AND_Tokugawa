@@ -7,7 +7,7 @@ __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
 import os
-import shutil
+# import shutil
 import urllib.request
 
 from csv2html.io import IO
