@@ -37,7 +37,7 @@ public class HtmlTest{
 	 * "\"を"quot;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforBackslach()
+	public void compareOriginalWordwithReritedWordforBackslash()
 	{
 		assertEquals("quot;", IO.htmlCanonicalString("\""));
 	}
