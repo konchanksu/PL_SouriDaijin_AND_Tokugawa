@@ -8,6 +8,9 @@ __date__ = '2021/01/10 (Created: 2016/01/01)'
 
 import csv
 
+# pylint: disable=R0201
+# R0201: Method could be a function (no-self-use)
+
 class IO:
 	"""入出力：リーダ・ダウンローダ・ライタを抽象する。"""
 
