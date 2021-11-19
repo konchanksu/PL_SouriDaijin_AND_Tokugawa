@@ -83,7 +83,8 @@ class Writer(IO):
 
 		footer = [
 			'<hr>',
-			f'<div class="right-small">Created by csv2html.Translator on {date.strftime("%Y/%m/%d")} at {time.isoformat(timespec="seconds")}</div>',
+			f'<div class="right-small">Created by csv2html.Translator on {date.strftime("%Y/%m/%d")}\
+ at {time.isoformat(timespec="seconds")}</div>',
 			'</body>',
 			'</html>',
 		]

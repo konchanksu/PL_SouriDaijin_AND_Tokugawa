@@ -7,7 +7,6 @@ __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
 import datetime
-import io
 # import locale
 import os
 import os.path
