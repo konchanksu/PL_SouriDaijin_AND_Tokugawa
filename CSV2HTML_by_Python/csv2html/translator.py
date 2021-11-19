@@ -46,7 +46,7 @@ class Translator:
 			end = list(map(int, re.split('年|月|日', end)[:-1]))
 			end = datetime.datetime(*end)
 
-		return str((end - start).days + 1)
+		return f"{(end - start).days + 1:,}"
 
 	def compute_string_of_image(self, a_tuple):
 		"""サムネイル画像から画像へ飛ぶためのHTML文字列を作成して、それを応答する。"""
