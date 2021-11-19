@@ -51,7 +51,7 @@ class IO:
 		}
 
 		for key, value in table.items():
-			a_string.replace(key, value)
+			a_string = a_string.replace(key, value)
 
 		return a_string
 
