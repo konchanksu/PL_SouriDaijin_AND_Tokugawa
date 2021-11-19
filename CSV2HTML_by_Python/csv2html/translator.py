@@ -7,13 +7,14 @@ __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
 import datetime
+import io
 # import locale
 import os
 import os.path
 import re
 import subprocess
 
-# from PIL import Image
+from PIL import Image
 
 from csv2html.downloader import Downloader
 from csv2html.io import IO
@@ -53,8 +54,12 @@ class Translator:
 		number = a_tuple.values()[self._input_table.attributes().keys().index("no")]
 		image_file = a_tuple.values()[self._input_table.attributes().keys().index("image")]
 		thumbnail_file = a_tuple.values()[self._input_table.attributes().keys().index("thumbnail")]
+		base_dir = self._output_table.attributes().base_directory()
+
+		with Image.open(base_dir + os.sep + thumbnail_file) as a_image:
+			width, height = a_image.size
 		return f'<a name="{number}" href="{image_file}"> <img class="borderless" \
-			src={thumbnail_file} width="25" height="32" alt="{thumbnail_file}"></a>'
+			src={thumbnail_file} width="{width}" height="{height}" alt="{thumbnail_file}"></a>' # ここのwidthとheightを変数にするように変更
 
 	def execute(self):
 		"""CSVファイルをHTMLページへと変換する。"""
