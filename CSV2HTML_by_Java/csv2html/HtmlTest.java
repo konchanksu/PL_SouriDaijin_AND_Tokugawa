@@ -34,12 +34,12 @@ public class HtmlTest{
 	}
 
 	/**
-	 * "\"を"quot;"に変換できているかのテスト
+	 * "\"を"&quot;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforBackslash()
 	{
-		assertEquals("quot;", IO.htmlCanonicalString("\""));
+		assertEquals("&quot;", IO.htmlCanonicalString("\""));
 	}
 
 	/**
