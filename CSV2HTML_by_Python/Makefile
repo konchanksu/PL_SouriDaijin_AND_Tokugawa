@@ -53,7 +53,7 @@ pip:
 	@if [ -z `which pip` ]; \
 	then \
 		(cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
-		(cd $(WORKDIR); sudo -H python get-pip.py); \
+		(cd $(WORKDIR); sudo -H $(PYTHON) get-pip.py); \
 		(cd $(WORKDIR); rm -r get-pip.py); \
 	else \
 		(cd $(WORKDIR); sudo -H pip install -U pip); \
