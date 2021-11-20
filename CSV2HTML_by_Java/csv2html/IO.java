@@ -2,7 +2,7 @@ package csv2html;
 
 import java.io.File;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +11,7 @@ import utility.StringUtility;
 /**
  * 入出力：リーダ・ダウンローダ・ライタを抽象する。
  */
-public abstract class IO extends Object
-{
+public abstract class IO extends Object {
 	/**
 	 * テーブル（表：スプレッドシート）を記憶するフィールド。
 	 */
@@ -22,8 +21,7 @@ public abstract class IO extends Object
 	 * 入出力のコンストラクタ。
 	 * @param aTable テーブル
 	 */
-	public IO(Table aTable)
-	{
+	public IO(Table aTable) {
 		super();
 
 		this.table = aTable;
@@ -35,8 +33,7 @@ public abstract class IO extends Object
 	 * 属性リストを応答する。
 	 * @return 属性リスト
 	 */
-	public Attributes attributes()
-	{
+	public Attributes attributes() {
 		return this.table().attributes();
 	}
 
@@ -44,14 +41,18 @@ public abstract class IO extends Object
 	 * ファイルやディレクトリを削除するクラスメソッド。
 	 * @param aFile ファイルやディレクトリ
 	 */
-	public static void deleteFileOrDirectory(File aFile)
-	{
-		if (!aFile.exists()) { return; }
-		if (aFile.isFile()) { aFile.delete(); }
-		if (aFile.isDirectory())
-		{
+	public static void deleteFileOrDirectory(File aFile) {
+		if (!aFile.exists()) {
+			return;
+		}
+		if (aFile.isFile()) {
+			aFile.delete();
+		}
+		if (aFile.isDirectory()) {
 			File[] files = aFile.listFiles();
-			for (File each : files) { IO.deleteFileOrDirectory(each); }
+			for (File each : files) {
+				IO.deleteFileOrDirectory(each);
+			}
 			aFile.delete();
 		}
 
@@ -63,9 +64,9 @@ public abstract class IO extends Object
 	 * @param aString 文字列
 	 * @return HTML内に記述できる正式な文字列
 	 */
-	public static String htmlCanonicalString(String aString)
-	{
-		Map<String,String> table = new HashMap<>();
+	public static String htmlCanonicalString(String aString) {
+		/// &の変換処理を先に行う必要があるため、追加順序を保持する必要がある ///
+		Map<String, String> table = new LinkedHashMap<>();
 		table.put("&", "&amp;");
 		table.put(">", "&gt;");
 		table.put("<", "&lt;");
@@ -76,7 +77,7 @@ public abstract class IO extends Object
 		table.put("\n", "<br>");
 		table.put("\f", "");
 
-		for(Map.Entry<String,String> entry : table.entrySet()){
+		for (Map.Entry<String, String> entry : table.entrySet()) {
 			aString = aString.replaceAll(entry.getKey(), entry.getValue());
 		}
 
@@ -88,8 +89,7 @@ public abstract class IO extends Object
 	 * @param aFile ファイル
 	 * @return 行リスト
 	 */
-	public static List<String> readTextFromFile(File aFile)
-	{
+	public static List<String> readTextFromFile(File aFile) {
 		return StringUtility.readTextFromFile(aFile);
 	}
 
@@ -98,8 +98,7 @@ public abstract class IO extends Object
 	 * @param fileString ファイル文字列
 	 * @return 行リスト
 	 */
-	public static List<String> readTextFromFile(String fileString)
-	{
+	public static List<String> readTextFromFile(String fileString) {
 		return StringUtility.readTextFromFile(fileString);
 	}
 
@@ -108,8 +107,7 @@ public abstract class IO extends Object
 	 * @param urlString URL文字列
 	 * @return 行リスト
 	 */
-	public static List<String> readTextFromURL(String urlString)
-	{
+	public static List<String> readTextFromURL(String urlString) {
 		return StringUtility.readTextFromURL(urlString);
 	}
 
@@ -118,8 +116,7 @@ public abstract class IO extends Object
 	 * @param aURL URL
 	 * @return 行リスト
 	 */
-	public static List<String> readTextFromURL(URL aURL)
-	{
+	public static List<String> readTextFromURL(URL aURL) {
 		return StringUtility.readTextFromURL(aURL);
 	}
 
@@ -129,8 +126,7 @@ public abstract class IO extends Object
 	 * @param separators セパレータ文字列
 	 * @return トークン列
 	 */
-	public static List<String> splitString(String string, String separators)
-	{
+	public static List<String> splitString(String string, String separators) {
 		return StringUtility.splitString(string, separators);
 	}
 
@@ -138,8 +134,7 @@ public abstract class IO extends Object
 	 * テーブルを応答する。
 	 * @return テーブル
 	 */
-	public Table table()
-	{
+	public Table table() {
 		return this.table;
 	}
 
@@ -147,8 +142,7 @@ public abstract class IO extends Object
 	 * タプル群を応答する。
 	 * @return タプル群
 	 */
-	public List<Tuple> tuples()
-	{
+	public List<Tuple> tuples() {
 		return this.table().tuples();
 	}
 
@@ -157,8 +151,7 @@ public abstract class IO extends Object
 	 * @param aCollection 行リスト
 	 * @param aFile ファイル
 	 */
-	public static void writeText(List<String> aCollection, File aFile)
-	{
+	public static void writeText(List<String> aCollection, File aFile) {
 		StringUtility.writeText(aCollection, aFile);
 
 		return;
@@ -169,8 +162,7 @@ public abstract class IO extends Object
 	 * @param aCollection 行リスト
 	 * @param fileString ファイル名
 	 */
-	public static void writeText(List<String> aCollection, String fileString)
-	{
+	public static void writeText(List<String> aCollection, String fileString) {
 		StringUtility.writeText(aCollection, fileString);
 
 		return;
