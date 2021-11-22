@@ -1,4 +1,4 @@
-PYTHON	= python
+PYTHON	= python3
 PYDOC	= pydoc
 PYCS	= $(shell find . -name "*.pyc")
 PYCACHE	= $(shell find . -name "__pycache__")
@@ -53,7 +53,7 @@ pip:
 	@if [ -z `which pip` ]; \
 	then \
 		(cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
-		(cd $(WORKDIR); sudo -H python get-pip.py); \
+		(cd $(WORKDIR); sudo -H $(PYTHON) get-pip.py); \
 		(cd $(WORKDIR); rm -r get-pip.py); \
 	else \
 		(cd $(WORKDIR); sudo -H pip install -U pip); \
@@ -67,17 +67,6 @@ pylint:
 	@if [ -z `pip list --format=freeze | grep pylint` ]; \
 	then \
 		(cd $(WORKDIR); sudo -H pip install pylint); \
-	fi
-
-# 
-# Pillow is the friendly PIL fork. PIL is the Python Imaging Library.
-# 
-pil:
-	@if [ -z `pip list --format=freeze | grep Pillow` ]; \
-	then \
-		(cd $(WORKDIR); sudo -H pip install Pillow); \
-	else \
-		(cd $(WORKDIR); sudo -H pip install -U Pillow); \
 	fi
 
 # 
