@@ -15,7 +15,7 @@ public class TableTest {
 	 * 作成したタプルが追加できているかのテスト
 	 */
 	@Test
-	public void doCreatedTupleAdd() {
+	public void doCreatedTupleAddTest() {
 		Attributes anAttributets = null;
 
 		var aTable = new Table(anAttributets);
