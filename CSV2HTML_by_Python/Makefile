@@ -6,6 +6,9 @@ TARGET	= CSV2HTML.py
 PACKAGE	= csv2html
 INSTDIR	= CSV2HTML.app/Contents/Resources/Python/
 ARCHIVE	= $(shell basename `pwd`)
+IOTEST = csv2html/tests/python_io_test.py
+TABLETEST = csv2html/tests/python_table_test.py
+TRANSTEST = csv2html/tests/python_translator_test.py
 WORKDIR	= ./
 PYLINT	= pylint
 LINTRCF	= pylintrc.txt
@@ -78,5 +81,10 @@ list: pip
 	@(pip list --format=freeze | grep Pillow)
 
 prepare: pip pylint pil
+
+unittest: 
+	$(PYTHON) -m unittest $(IOTEST)
+	$(PYTHON) -m unittest $(TABLETEST)
+	$(PYTHON) -m unittest $(TRANSTEST)
 
 update: pip pylint pil
