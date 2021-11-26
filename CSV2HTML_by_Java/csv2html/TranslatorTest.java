@@ -11,7 +11,7 @@ public class TranslatorTest{
 	/**
 	 * Attributesの具象クラスを用いて、Translatorのインスタンスを作成する
 	 */
-	private Translator aTranslator = new Translator(ExtendsAttributesUsedTestMock.class);
+	private Translator aTranslator = new Translator(MockAttributes.class);
 
 	/**
 	 * 1日が正しく計算できているかのテスト
