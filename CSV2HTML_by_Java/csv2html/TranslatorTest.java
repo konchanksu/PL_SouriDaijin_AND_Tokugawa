@@ -50,6 +50,6 @@ public class TranslatorTest{
 	 */
 	@Test
 	public void caluculateGregorianTest() {
-		assertEquals("2", this.aTranslator.computeNumberOfDays("1752年9月2日〜1752年9月14日"));
+		assertEquals("13", this.aTranslator.computeNumberOfDays("1752年9月2日〜1752年9月14日"));
     }
 }
