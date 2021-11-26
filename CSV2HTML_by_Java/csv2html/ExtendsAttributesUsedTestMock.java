@@ -3,7 +3,7 @@ package csv2html;
 /**
  * Attributesの具象クラス
  */
-public class ExtendsAttributesUsedTest extends Attributes{
+public class ExtendsAttributesUsedTestMock extends Attributes{
     @Override
     String captionString(){
         return "";
