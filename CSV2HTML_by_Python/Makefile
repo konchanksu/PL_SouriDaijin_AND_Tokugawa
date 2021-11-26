@@ -63,6 +63,17 @@ pip:
 	fi
 
 # 
+# Pillow is the friendly PIL fork. PIL is the Python Imaging Library.
+# 
+pil:
+	@if [ -z `pip list --format=freeze | grep Pillow` ]; \
+	then \
+		(cd $(WORKDIR); sudo -H pip install Pillow); \
+	else \
+		(cd $(WORKDIR); sudo -H pip install -U Pillow); \
+	fi
+
+# 
 # Pylint is a tool that checks for errors in Python code,
 # tries to enforce a coding standard and looks for code smells.
 # 
