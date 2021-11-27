@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -85,9 +86,8 @@ public class Writer extends IO {
 	 */
 	public void writeFooterOn(BufferedWriter aWriter) throws IOException {
 		Calendar aCalendar = Calendar.getInstance();
-		String dateString = String.format("%d/%d/%d %d:%d:%d", aCalendar.get(Calendar.YEAR),
-				aCalendar.get(Calendar.MONTH) + 1, aCalendar.get(Calendar.DAY_OF_MONTH),
-				aCalendar.get(Calendar.HOUR_OF_DAY), aCalendar.get(Calendar.MINUTE), aCalendar.get(Calendar.SECOND));
+		SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String dateString = aDateFormat.format(aCalendar.getTime());
 		aWriter.write("<div class=\"right-small\">");
 		aWriter.write("Created by Okayama Kodai (CSV2HTML written by Java) ");
 		aWriter.write(IO.htmlCanonicalString(dateString));

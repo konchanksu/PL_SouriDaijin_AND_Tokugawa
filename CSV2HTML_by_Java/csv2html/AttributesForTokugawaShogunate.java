@@ -60,8 +60,8 @@ public class AttributesForTokugawaShogunate extends Attributes {
 	 * @return 情報を記したCSVファイル文字列
 	 */
 	public String csvUrl() {
-		return this.baseUrl() + "TokugawaShogunate.csv";
-		// return this.baseUrl() + "TokugawaShogunate2.csv";
+		//return this.baseUrl() + "TokugawaShogunate.csv";
+		return this.baseUrl() + "TokugawaShogunate2.csv";
 	}
 
 	/**
