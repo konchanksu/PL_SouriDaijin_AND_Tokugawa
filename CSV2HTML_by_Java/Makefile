@@ -46,8 +46,8 @@ doc:
 wipe:clean
 	@read -p "本当に削除しますか? (y/n): " INPUT;if [ "$${INPUT}" != 'y' ];then echo process stopped;exit 1;fi;
 	@find . -name ".DS_Store" -exec echo rm -f {} ";" -exec rm -f {} ";"
+	@readlink pmd-bin | xargs -I{} echo `pwd`/{} | xargs dirname | xargs -I{} sh -c 'rm -rf {}; echo rm -rf {}'
 	@find . -maxdepth 1 -name "$(PMD_BIN)" -exec echo rm -f {} ";" -exec rm -f {} ";"
-	@find . -maxdepth 1 -type d -name "$(PMD_DIR)" -exec echo rm -rf {} ";" -exec rm -rf {} ";"
 
 #zip:
 #	$(ANT) zip
