@@ -18,6 +18,9 @@ import utility.StringUtility;
  * ライタ：情報のテーブルをHTMLページとして書き出す。
  */
 public class Writer extends IO {
+	/**
+	 * htmlのフッターに表示する作者の名前
+	 */
 	public static final String htmlAuthor = "Okayama Kodai";
 
 	/**
@@ -57,6 +60,7 @@ public class Writer extends IO {
 	/**
 	 * 属性リストを書き出す。
 	 * @param aWriter ライタ
+	 * @throws IOException 入出力エラーが発生した場合
 	 */
 	public void writeAttributesOn(BufferedWriter aWriter) throws IOException {
 
@@ -83,6 +87,7 @@ public class Writer extends IO {
 	/**
 	 * フッタを書き出す。
 	 * @param aWriter ライタ
+	 * @throws IOException 入出力エラーが発生した場合
 	 */
 	public void writeFooterOn(BufferedWriter aWriter) throws IOException {
 		Calendar aCalendar = Calendar.getInstance();
@@ -104,6 +109,7 @@ public class Writer extends IO {
 	/**
 	 * ヘッダを書き出す。
 	 * @param aWriter ライタ
+	 * @throws IOException 入出力エラーが発生した場合
 	 */
 	public void writeHeaderOn(BufferedWriter aWriter) throws IOException {
 		aWriter.write(
@@ -201,6 +207,7 @@ public class Writer extends IO {
 	/**
 	 * ボディを書き出す。
 	 * @param aWriter ライタ
+	 * @throws IOException 入出力エラーが発生した場合
 	 */
 	public void writeTableBodyOn(BufferedWriter aWriter) throws IOException {
 		aWriter.write("<body cz-shortcut-listen=\"true\">");
@@ -236,8 +243,8 @@ public class Writer extends IO {
 
 	/**
 	 * タプル群を書き出す。
-	 * 
 	 * @param aWriter ライタ
+	 * @throws IOException 入出力エラーが発生した場合
 	 */
 	public void writeTuplesOn(BufferedWriter aWriter) throws IOException {
 		//タプルの色を指定するHTMLのクラス属性の名前

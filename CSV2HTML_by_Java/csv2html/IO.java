@@ -148,7 +148,7 @@ public abstract class IO extends Object {
 
 	/**
 	 * 文字列中に含まれる改行コードを全てLF(\n)に変換する
-	 * @param aString
+	 * @param aString 改行コードを変換する文字列
 	 * @return 変換後の文字列
 	 */
 	public static String uniteLineFeedToUnix(String aString) {

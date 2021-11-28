@@ -42,10 +42,11 @@ public class Reader extends IO {
 	 * @return 1行ごとに分割したリスト
 	 */
 	private List<String> extractRowsFromCsv(String csvString) {
+		csvString = IO.uniteLineFeedToUnix(csvString);
 		Matcher rowMatcher = this.patternOfExtractRows.matcher(csvString);
 		List<String> aList = new ArrayList<>();
 		while (rowMatcher.find()) {
-			String aRow = IO.uniteLineFeedToUnix(rowMatcher.group());
+			String aRow = rowMatcher.group();
 			aList.add(aRow);
 		}
 
@@ -65,10 +66,9 @@ public class Reader extends IO {
 
 			//一番後ろの改行、カンマ(,)を削除
 			aValue = aValue.substring(0, aValue.length() - 1);
-
 			//ダブルクォートで囲まれていた場合、ダブルクォートを削除
 			if (aValue.startsWith("\"") && aValue.endsWith("\"")) {
-				aValue.substring(1, aValue.length() - 1);
+				aValue = aValue.substring(1, aValue.length() - 1);
 			}
 			aList.add(aValue);
 		}
