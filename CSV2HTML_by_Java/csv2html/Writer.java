@@ -16,10 +16,10 @@ import utility.StringUtility;
 
 /**
  * ライタ：情報のテーブルをHTMLページとして書き出す。
- *
- * HACK: 全体的に汚いのでいい案があれば直してください...
  */
 public class Writer extends IO {
+	public static final String htmlAuthor = "Okayama Kodai";
+
 	/**
 	 * ライタのコンストラクタ。
 	 * @param aTable テーブル
@@ -89,7 +89,9 @@ public class Writer extends IO {
 		SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String dateString = aDateFormat.format(aCalendar.getTime());
 		aWriter.write("<div class=\"right-small\">");
-		aWriter.write("Created by Okayama Kodai (CSV2HTML written by Java) ");
+		aWriter.write("Created by ");
+		aWriter.write(Writer.htmlAuthor);
+		aWriter.write(" (CSV2HTML written by Java)");
 		aWriter.write(IO.htmlCanonicalString(dateString));
 		aWriter.write("</div>");
 		aWriter.newLine();
@@ -234,8 +236,6 @@ public class Writer extends IO {
 
 	/**
 	 * タプル群を書き出す。
-	 * 
-	 * HACK: インデックス番号を外に出すのが気持ち悪いので、良い書き方あったら教えてください。
 	 * 
 	 * @param aWriter ライタ
 	 */

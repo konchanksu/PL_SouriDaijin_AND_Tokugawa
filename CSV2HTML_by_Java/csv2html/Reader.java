@@ -2,6 +2,7 @@ package csv2html;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +28,8 @@ public class Reader extends IO {
 	 */
 	public Reader(Table aTable) {
 		super(aTable);
+
+		//正規表現を同じ部分で分けようとしましたが、余計に汚くなったのでこうしました。
 		this.patternOfExtractRows = Pattern.compile("((\"[^\"]*\")|([^\n\",]*),?)*\n");
 		this.patternOfExtractValues = Pattern.compile("((\"[^\"]*\")|([^\n\",]*))(,|\n)");
 
@@ -42,7 +45,7 @@ public class Reader extends IO {
 		Matcher rowMatcher = this.patternOfExtractRows.matcher(csvString);
 		List<String> aList = new ArrayList<>();
 		while (rowMatcher.find()) {
-			String aRow = rowMatcher.group();
+			String aRow = IO.uniteLineFeedToUnix(rowMatcher.group());
 			aList.add(aRow);
 		}
 
@@ -59,10 +62,13 @@ public class Reader extends IO {
 		List<String> aList = new ArrayList<>();
 		while (valueMatcher.find()) {
 			String aValue = valueMatcher.group();
+
+			//一番後ろの改行、カンマ(,)を削除
 			aValue = aValue.substring(0, aValue.length() - 1);
-			aValue.trim();
-			if (aValue.startsWith("\"")) {
-				aValue = aValue.substring(1, aValue.length() - 1);
+
+			//ダブルクォートで囲まれていた場合、ダブルクォートを削除
+			if (aValue.startsWith("\"") && aValue.endsWith("\"")) {
+				aValue.substring(1, aValue.length() - 1);
 			}
 			aList.add(aValue);
 		}
@@ -76,33 +82,36 @@ public class Reader extends IO {
 	public void perform() {
 		String csvUrl = super.attributes().csvUrl();
 		List<String> splitUrl = IO.splitString(csvUrl, "/");
+		//URLの長さが足りない場合
+		if (splitUrl.isEmpty()) {
+			return;
+		}
 		File csvFile = new File(super.attributes().baseDirectory(), splitUrl.get(splitUrl.size() - 1));
 		String csvString = String.join(System.lineSeparator(), IO.readTextFromFile(csvFile));
 
-		if (csvString.isEmpty()) {
-			return;
-		}
+		//正規表現では最後に改行がある前提なので、無いなら追加
 		if (!csvString.endsWith(System.lineSeparator())) {
 			csvString += System.lineSeparator();
 		}
 
-		List<String> rows = this.extractRowsFromCsv(csvString);
 		List<List<String>> csvValues = new ArrayList<>();
-		rows.forEach((aRow) -> {
+		this.extractRowsFromCsv(csvString).forEach((aRow) -> {
 			csvValues.add(this.extractValuesFromRow(aRow));
 		});
 
-		//Attributesのnamesに属性名を追加
-		super.attributes().names(csvValues.get(0));
+		Iterator<List<String>> csvIterator = csvValues.iterator();
 
-		if (csvValues.size() == 1) {
-			return;
+		//Attributesのnamesに属性名を追加
+		if (csvIterator.hasNext()) {
+			super.attributes().names(csvIterator.next());
 		}
 
-		csvValues.subList(1, csvValues.size()).forEach((values) -> {
+		//要素を追加
+		csvIterator.forEachRemaining((values) -> {
 			Tuple aTuple = new Tuple(super.attributes(), values);
 			super.table().add(aTuple);
 		});
+
 		return;
 	}
 }
