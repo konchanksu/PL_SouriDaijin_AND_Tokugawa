@@ -23,12 +23,10 @@ class PythonTranslatorTest(unittest.TestCase):
 		testdata2 = "3000年1月1日〜4000年12月31日"
 		calcresult = self._translator.compute_string_of_days(testdata)
 		print("TestCase1: 1745年11月2日〜1760年5月13日")
-		self.assertEqual(calcresult, "5307")
-		if self.assertEqual(calcresult, "5307") is None:
+		if self.assertEqual(calcresult, "5,307") is None:
 			print('Test OK')
 
 		calcresult = self._translator.compute_string_of_days(testdata2)
 		print("TestCase2: 3000年1月1日〜4000年12月31日")
-		self.assertEqual(calcresult, "365608")
-		if self.assertEqual(calcresult, "365608") is None:
+		if self.assertEqual(calcresult, "365,608") is None:
 			print('Test OK')

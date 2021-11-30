@@ -28,10 +28,8 @@ class PythonTableTest(unittest.TestCase):
 		testtuple = testtuples[0]
 		testtuple2 = testtuples[1]
 		print('TestCase1: test')
-		self.assertEqual(testtuple.values(), 'test')
 		if self.assertEqual(testtuple.values(), 'test') is None:
 			print('Test OK')
 		print('TestCase2: None')
-		self.assertEqual(testtuple2.values(), None)
 		if self.assertEqual(testtuple2.values(), None) is None:
 			print('Test OK')
