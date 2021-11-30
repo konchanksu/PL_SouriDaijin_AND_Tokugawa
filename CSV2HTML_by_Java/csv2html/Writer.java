@@ -16,7 +16,7 @@ import utility.StringUtility;
 /**
  * ライタ：情報のテーブルをHTMLページとして書き出す。
  *
- * HACK: 全体的にコレジャナイ感があるのでいい案があれば直してください...
+ * HACK: 全体的に汚いのでいい案があれば直してください...
  */
 public class Writer extends IO {
 	/**
@@ -33,19 +33,17 @@ public class Writer extends IO {
 	 * HTMLページを基にするテーブルからインデックスファイル(index.html)に書き出す。
 	 */
 	public void perform() {
-		try {
-			Attributes attributes = this.attributes();
-			String fileStringOfHTML = attributes.baseDirectory() + attributes.indexHTML();
-			File aFile = new File(fileStringOfHTML);
-			FileOutputStream outputStream = new FileOutputStream(aFile);
-			OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, StringUtility.encodingSymbol());
-			BufferedWriter aWriter = new BufferedWriter(outputWriter);
+		Attributes attributes = this.attributes();
+		String fileStringOfHTML = attributes.baseDirectory() + attributes.indexHTML();
+		File aFile = new File(fileStringOfHTML);
+		try (FileOutputStream outputStream = new FileOutputStream(aFile);
+				OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, StringUtility.encodingSymbol());
+				BufferedWriter aWriter = new BufferedWriter(outputWriter);) {
 
 			this.writeHeaderOn(aWriter);
 			this.writeTableBodyOn(aWriter);
 			this.writeFooterOn(aWriter);
 
-			aWriter.close();
 		} catch (UnsupportedEncodingException | FileNotFoundException anException) {
 			anException.printStackTrace();
 		} catch (IOException anException) {

@@ -1,4 +1,4 @@
-PYTHON	= python
+PYTHON	= python3
 PYDOC	= pydoc
 PYCS	= $(shell find . -name "*.pyc")
 PYCACHE	= $(shell find . -name "__pycache__")
@@ -6,6 +6,9 @@ TARGET	= CSV2HTML.py
 PACKAGE	= csv2html
 INSTDIR	= CSV2HTML.app/Contents/Resources/Python/
 ARCHIVE	= $(shell basename `pwd`)
+IOTEST = csv2html/tests/python_io_test.py
+TABLETEST = csv2html/tests/python_table_test.py
+TRANSTEST = csv2html/tests/python_translator_test.py
 WORKDIR	= ./
 PYLINT	= pylint
 LINTRCF	= pylintrc.txt
@@ -53,20 +56,10 @@ pip:
 	@if [ -z `which pip` ]; \
 	then \
 		(cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
-		(cd $(WORKDIR); sudo -H python get-pip.py); \
+		(cd $(WORKDIR); sudo -H $(PYTHON) get-pip.py); \
 		(cd $(WORKDIR); rm -r get-pip.py); \
 	else \
 		(cd $(WORKDIR); sudo -H pip install -U pip); \
-	fi
-
-# 
-# Pylint is a tool that checks for errors in Python code,
-# tries to enforce a coding standard and looks for code smells.
-# 
-pylint:
-	@if [ -z `pip list --format=freeze | grep pylint` ]; \
-	then \
-		(cd $(WORKDIR); sudo -H pip install pylint); \
 	fi
 
 # 
@@ -81,6 +74,16 @@ pil:
 	fi
 
 # 
+# Pylint is a tool that checks for errors in Python code,
+# tries to enforce a coding standard and looks for code smells.
+# 
+pylint:
+	@if [ -z `pip list --format=freeze | grep pylint` ]; \
+	then \
+		(cd $(WORKDIR); sudo -H pip install pylint); \
+	fi
+
+# 
 # List of the required packages
 # 
 list: pip
@@ -89,5 +92,10 @@ list: pip
 	@(pip list --format=freeze | grep Pillow)
 
 prepare: pip pylint pil
+
+unittest: 
+	$(PYTHON) -m unittest $(IOTEST)
+	$(PYTHON) -m unittest $(TABLETEST)
+	$(PYTHON) -m unittest $(TRANSTEST)
 
 update: pip pylint pil

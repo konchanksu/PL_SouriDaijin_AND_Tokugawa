@@ -6,7 +6,10 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
-# import csv
+import csv
+
+# pylint: disable=R0201
+# R0201: Method could be a function (no-self-use)
 
 class IO:
 	"""入出力：リーダ・ダウンローダ・ライタを抽象する。"""
@@ -25,9 +28,11 @@ class IO:
 	def read_csv(self, filename):
 		"""指定されたファイルをCSVとして読み込み、行リストを応答する。"""
 
-		(lambda x: x)(filename) # NOP
+		row_list = []
+		with open(filename, "r") as a_file:
+			row_list = list(csv.reader(a_file))
 
-		return (lambda x: x)(self) # answer something
+		return row_list
 
 	@classmethod
 	def html_canonical_string(cls, a_string):
@@ -45,10 +50,10 @@ class IO:
 			'\f' : '',
 		}
 
-		(lambda x: x)(a_string) # NOP
-		(lambda x: x)(table) # NOP
+		for key, value in table.items():
+			a_string.replace(key, value)
 
-		return (lambda x: x)(cls) # answer something
+		return a_string
 
 	def table(self):
 		"""テーブルを応答する。"""
@@ -62,3 +67,7 @@ class IO:
 
 	def write_csv(self, filename, rows):
 		"""指定されたファイルにCSVとして行たち(rows)を書き出す。"""
+
+		with open(filename, "w") as a_file:
+			writer = csv.writer(a_file)
+			writer.writerows(rows)

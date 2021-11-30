@@ -6,10 +6,10 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
-# import os
+import os
 
 from csv2html.io import IO
-# from csv2html.tuple import Tuple
+from csv2html.tuple import Tuple
 
 class Reader(IO):
 	"""リーダ：情報を記したCSVファイルを読み込んでテーブルに仕立て上げる。"""
@@ -23,4 +23,13 @@ class Reader(IO):
 	def perform(self):
 		"""ダウンロードしたCSVファイルを読み込む。"""
 
-		(lambda x: x)(self) # NOP
+		url = super().attributes().csv_url()
+		local_csv_file = super().attributes().base_directory() + os.sep + os.path.basename(url)
+		rows = super().read_csv(local_csv_file)
+
+		for index, name in enumerate(rows[0]):
+			super().attributes().names()[index] = name
+
+		for row in rows[1:]:
+			a_tuple = Tuple(attributes=super().attributes() ,values=row)
+			super().table().add(a_tuple)

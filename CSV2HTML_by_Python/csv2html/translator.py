@@ -6,19 +6,19 @@ __author__ = 'AOKI Atsushi'
 __version__ = '1.0.7'
 __date__ = '2021/01/10 (Created: 2016/01/01)'
 
-# import datetime
+import datetime
 # import locale
 import os
 import os.path
-# import re
+import re
 import subprocess
 
-# from PIL import Image
+from PIL import Image
 
 from csv2html.downloader import Downloader
-# from csv2html.io import IO
+from csv2html.io import IO
 from csv2html.table import Table
-# from csv2html.tuple import Tuple
+from csv2html.tuple import Tuple
 from csv2html.writer import Writer
 
 # pylint: disable=R0201
@@ -37,13 +37,28 @@ class Translator:
 
 	def compute_string_of_days(self, period):
 		"""在位日数を計算して、それを文字列にして応答する。"""
+		start, end = period.split("〜")
+		start = list(map(int, re.split('年|月|日', start)[:-1]))
+		start = datetime.datetime(*start)
+		if end == "":
+			end = datetime.datetime.now()
+		else:
+			end = list(map(int, re.split('年|月|日', end)[:-1]))
+			end = datetime.datetime(*end)
 
-		return (lambda x: x)(period) # answer something
+		return f"{(end - start).days + 1:,}"
 
 	def compute_string_of_image(self, a_tuple):
 		"""サムネイル画像から画像へ飛ぶためのHTML文字列を作成して、それを応答する。"""
+		number = a_tuple.values()[self._input_table.attributes().keys().index("no")]
+		image_file = a_tuple.values()[self._input_table.attributes().keys().index("image")]
+		thumbnail_file = a_tuple.values()[self._input_table.attributes().keys().index("thumbnail")]
+		base_dir = self._output_table.attributes().base_directory()
 
-		return (lambda x: x)(a_tuple) # answer something
+		with Image.open(base_dir + os.sep + thumbnail_file) as a_image:
+			width, height = a_image.size
+		return f'<a name="{number}" href="{image_file}"> <img class="borderless" \
+			src={thumbnail_file} width="{width}" height="{height}" alt="{thumbnail_file}"></a>' # ここのwidthとheightを変数にするように変更
 
 	def execute(self):
 		"""CSVファイルをHTMLページへと変換する。"""
@@ -55,9 +70,9 @@ class Translator:
 
 		# トランスレータに入力となるテーブルを渡して変換してもらい、
 		# 出力となるテーブルを獲得する。
-		print(self._input_table)
+		# print(self._input_table)
 		self.translate()
-		print(self._output_table)
+		# print(self._output_table)
 
 		# ライタに出力となるテーブルを渡して、
 		# Webページを作成してもらう。
@@ -83,4 +98,24 @@ class Translator:
 	def translate(self):
 		"""CSVファイルを基にしたテーブルから、HTMLページを基にするテーブルに変換する。"""
 
-		(lambda x: x)(self) # NOP
+		# 名前を設定する
+		input_key = self._input_table.attributes().keys()
+		output_key = self._output_table.attributes().keys()
+		for index, key in enumerate(output_key):
+			if key in input_key:
+				self._output_table.attributes().names()[index] = self._input_table.attributes().names()[input_key.index(key)]
+			elif key == "days":
+				self._output_table.attributes().names()[index] = "在位日数"
+
+		# タプルを設定する
+		for a_tuple in self._input_table.tuples():
+			values = []
+			for key in self._output_table.attributes().keys():
+				if key == "days":
+					values.append(self.compute_string_of_days(IO.html_canonical_string(a_tuple.values()[input_key.index("period")])))
+				elif key == "image":
+					values.append(self.compute_string_of_image(a_tuple))
+				elif key in input_key:
+					values.append(IO.html_canonical_string(a_tuple.values()[input_key.index(key)]))
+
+			self._output_table.add(Tuple(self._output_table.attributes(), values))
