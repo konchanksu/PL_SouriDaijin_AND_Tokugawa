@@ -96,7 +96,7 @@ public class Writer extends IO {
         aWriter.write("<div class=\"right-small\">");
         aWriter.write("Created by ");
         aWriter.write(Writer.htmlAuthor);
-        aWriter.write(" (CSV2HTML written by Java)");
+        aWriter.write(" (CSV2HTML written by Java) ");
         aWriter.write(IO.htmlCanonicalString(dateString));
         aWriter.write("</div>");
         aWriter.newLine();
@@ -120,10 +120,10 @@ public class Writer extends IO {
         aWriter.write(
                 """
                         <head>
-                                <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
-                                <meta http-equiv=\"Content-Style-Type\" content=\"text/css\">
-                                <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
-                                <meta name=\"keywords\" content=\"Java,Oriented,Programming\">
+                            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
+                            <meta http-equiv=\"Content-Style-Type\" content=\"text/css\">
+                            <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
+                            <meta name=\"keywords\" content=\"Java,Oriented,Programming\">
                         """);
         aWriter.write(String.format("<meta name=\"description\" content=\"%s\">", super.attributes().titleString()));
         aWriter.newLine();
