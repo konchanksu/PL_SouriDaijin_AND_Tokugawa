@@ -3,6 +3,7 @@ package csv2html;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import utility.ImageUtility;
@@ -82,7 +83,7 @@ public class Table extends Object {
 		if (this.images != null) {
 			return this.images;
 		}
-		this.images = new ArrayList<BufferedImage>();
+		this.images = Collections.synchronizedList(new ArrayList<BufferedImage>());
 		for (Tuple aTuple : this.tuples()) {
 			String aString = aTuple.values().get(aTuple.attributes().indexOfImage());
 			BufferedImage anImage = this.picture(aString);
@@ -113,7 +114,7 @@ public class Table extends Object {
 		if (thumbnails != null) {
 			return this.thumbnails;
 		}
-		this.thumbnails = new ArrayList<BufferedImage>();
+		this.thumbnails = Collections.synchronizedList(new ArrayList<BufferedImage>());
 		for (Tuple aTuple : this.tuples()) {
 			String aString = aTuple.values().get(aTuple.attributes().indexOfThumbnail());
 			BufferedImage anImage = this.picture(aString);
@@ -150,7 +151,7 @@ public class Table extends Object {
 		if (this.tuples != null) {
 			return this.tuples;
 		}
-		this.tuples = new ArrayList<Tuple>();
+		this.tuples = Collections.synchronizedList(new ArrayList<Tuple>());
 
 		return this.tuples;
 	}
