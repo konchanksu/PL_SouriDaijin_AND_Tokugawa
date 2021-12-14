@@ -147,6 +147,15 @@ public abstract class IO extends Object {
 	}
 
 	/**
+	 * 文字列中に含まれる改行コードを全てLF(\n)に変換する
+	 * @param aString 改行コードを変換する文字列
+	 * @return 変換後の文字列
+	 */
+	public static String uniteLineFeedToUnix(String aString) {
+		return aString.replaceAll("(\r\n|\r)", "\n");
+	}
+
+	/**
 	 * 指定された行リストを、指定されたファイルに書き出すクラスメソッド。
 	 * @param aCollection 行リスト
 	 * @param aFile ファイル

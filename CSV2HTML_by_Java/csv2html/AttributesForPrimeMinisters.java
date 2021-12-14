@@ -60,8 +60,8 @@ public class AttributesForPrimeMinisters extends Attributes {
 	 * @return 情報を記したCSVファイル文字列
 	 */
 	public String csvUrl() {
-		return this.baseUrl() + "PrimeMinisters.csv";
-		// return this.baseUrl() + "PrimeMinisters2.csv";
+		//return this.baseUrl() + "PrimeMinisters.csv";
+		return this.baseUrl() + "PrimeMinisters2.csv";
 	}
 
 	/**

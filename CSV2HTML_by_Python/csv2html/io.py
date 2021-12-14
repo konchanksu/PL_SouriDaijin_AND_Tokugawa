@@ -11,6 +11,7 @@ import csv
 # pylint: disable=R0201
 # R0201: Method could be a function (no-self-use)
 
+
 class IO:
 	"""入出力：リーダ・ダウンローダ・ライタを抽象する。"""
 
@@ -35,23 +36,23 @@ class IO:
 		return row_list
 
 	@classmethod
-	def html_canonical_string(cls, a_string):
+	def html_canonical_string(cls, a_string: str):
 		"""指定された文字列をHTML内に記述できる正式な文字列に変換して応答する。"""
 
 		table = {
-			'&'  : '&amp;',
-			'>'  : '&gt;',
-			'<'  : '&lt;',
-			'"'  : '&quot;',
-			' '  : '&nbsp;',
-			'\t' : '',
-			'\r' : '',
-			'\n' : '<br>',
-			'\f' : '',
+			'&': '&amp;',
+			'>': '&gt;',
+			'<': '&lt;',
+			'"': '&quot;',
+			' ': '&nbsp;',
+			'\t': '',
+			'\r': '',
+			'\n': '<br>',
+			'\f': '',
 		}
 
 		for key, value in table.items():
-			a_string.replace(key, value)
+			a_string = a_string.replace(key, value)
 
 		return a_string
 

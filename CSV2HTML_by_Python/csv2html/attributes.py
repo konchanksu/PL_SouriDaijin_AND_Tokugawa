@@ -10,6 +10,7 @@ import datetime
 import os
 import shutil
 
+
 class Attributes:
 	"""属性リスト：情報テーブルを入出力する際の属性情報を記憶。"""
 
@@ -53,7 +54,8 @@ class Attributes:
 		home_directory = os.environ['HOME']
 		date_string = datetime.date.today().strftime("%Y%m%d")
 		# time_string = datetime.datetime.now().strftime("%H%M%S")
-		base_directory = home_directory + os.sep + 'Desktop' + os.sep + 'CSV2HTML' + '_' + kind_string + '_' + date_string
+		base_directory = home_directory + os.sep + 'Desktop' + \
+			os.sep + 'CSV2HTML' + '_' + kind_string + '_' + date_string
 		if os.path.isdir(base_directory):
 			shutil.rmtree(base_directory)
 		os.makedirs(base_directory)
@@ -84,6 +86,7 @@ class Attributes:
 
 		return self._names
 
+
 class AttributesForPrimeMinisters(Attributes):
 	"""属性リスト：総理大臣の情報テーブルを入出力する際の属性情報を記憶。"""
 
@@ -93,16 +96,18 @@ class AttributesForPrimeMinisters(Attributes):
 		super().__init__(kind_string)
 
 		if kind_string == 'input':
-			self._keys = ["no", "order", "name", "kana", "period", "school", "party", "place", "image", "thumbnail"]
+			self._keys = ["no", "order", "name", "kana", "period",
+						  "school", "party", "place", "image", "thumbnail"]
 		if kind_string == 'output':
-			self._keys = ["no", "order", "name", "kana", "period", "days", "school", "party", "place", "image"]
+			self._keys = ["no", "order", "name", "kana", "period",
+						  "days", "school", "party", "place", "image"]
 		self._names = [None] * len(self._keys)
 
 	@classmethod
 	def base_directory(cls, *ignore):
 		"""ベースとなるディレクトリ（ページを生成するためのフォルダ）を応答する。"""
 
-		(lambda x: x)(ignore) # NOP
+		(lambda x: x)(ignore)  # NOP
 		return super().base_directory('PrimeMinisters')
 
 	@classmethod
@@ -121,14 +126,15 @@ class AttributesForPrimeMinisters(Attributes):
 	def csv_url(cls):
 		"""CSVファイルをURLで応答する。"""
 
-		return cls.base_url() + 'PrimeMinisters.csv'
-		# return cls.base_url() + 'PrimeMinisters2.csv'
+		# return cls.base_url() + 'PrimeMinisters.csv'
+		return cls.base_url() + 'PrimeMinisters2.csv'
 
 	@classmethod
 	def title_string(cls):
 		"""ページのタイトル文字列を応答する。"""
 
 		return 'Prime Ministers'
+
 
 class AttributesForTokugawaShogunate(Attributes):
 	"""属性リスト：徳川幕府の情報テーブルを入出力する際の属性情報を記憶。"""
@@ -139,16 +145,18 @@ class AttributesForTokugawaShogunate(Attributes):
 		super().__init__(kind_string)
 
 		if kind_string == 'input':
-			self._keys = ["no", "name", "kana", "period", "family", "rank", "image", "thumbnail", "former", "cemetery"]
+			self._keys = ["no", "name", "kana", "period", "family",
+						  "rank", "image", "thumbnail", "former", "cemetery"]
 		if kind_string == 'output':
-			self._keys = ["no", "name", "kana", "period", "days", "family", "rank", "image", "former", "cemetery"]
+			self._keys = ["no", "name", "kana", "period", "days",
+						  "family", "rank", "image", "former", "cemetery"]
 		self._names = [None] * len(self._keys)
 
 	@classmethod
 	def base_directory(cls, *ignore):
 		"""ベースとなるディレクトリ（ページを生成するためのフォルダ）を応答する。"""
 
-		(lambda x: x)(ignore) # NOP
+		(lambda x: x)(ignore)  # NOP
 		return super().base_directory('TokugawaShogunate')
 
 	@classmethod
@@ -167,8 +175,8 @@ class AttributesForTokugawaShogunate(Attributes):
 	def csv_url(cls):
 		"""CSVファイルをURLで応答する。"""
 
-		return cls.base_url() + 'TokugawaShogunate.csv'
-		# return cls.base_url() + 'TokugawaShogunate2.csv'
+		# return cls.base_url() + 'TokugawaShogunate.csv'
+		return cls.base_url() + 'TokugawaShogunate2.csv'
 
 	@classmethod
 	def title_string(cls):
