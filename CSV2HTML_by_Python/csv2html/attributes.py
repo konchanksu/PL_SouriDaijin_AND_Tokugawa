@@ -30,10 +30,11 @@ class Attributes:
 		"""自分自身を文字列にして、それを応答する。"""
 
 		string = '['
-		for index in range(0, len(self._keys)):
+		for index, key_and_name in enumerate(zip(self._keys, self._names)):
+			a_key, a_name = key_and_name
 			if index != 0:
 				string += ', '
-			string += self._keys[index] + ':' + str(self._names[index])
+			string += a_key + ':' + str(a_name)
 		string += ']'
 
 		return string
