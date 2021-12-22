@@ -2,6 +2,7 @@ package csv2html;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import utility.ImageUtility;
@@ -54,12 +55,28 @@ public class Downloader extends IO {
 	 * @param indexOfPicture 画像のインデックス
 	 */
 	private void downloadPictures(int indexOfPicture) {
-		super.table().tuples().stream().parallel().forEach((tuple) -> {
-			String pictureName = tuple.values().get(indexOfPicture);
-			BufferedImage anImage = ImageUtility.readImageFromURL(super.attributes().baseUrl() + pictureName);
-			File saveImageFile = new File(super.attributes().baseDirectory(), pictureName);
-			saveImageFile.getParentFile().mkdirs();
-			ImageUtility.writeImage(anImage, saveImageFile);
+
+		List<Thread> processList = new ArrayList<>();
+		super.table().tuples().forEach((aTuple) -> {
+			processList.add(new Thread(() -> {
+				String pictureName = aTuple.values().get(indexOfPicture);
+				BufferedImage anImage = ImageUtility.readImageFromURL(super.attributes().baseUrl() + pictureName);
+				File saveImageFile = new File(super.attributes().baseDirectory(), pictureName);
+				saveImageFile.getParentFile().mkdirs();
+				ImageUtility.writeImage(anImage, saveImageFile);
+			}));
+		});
+
+		processList.forEach((aProcess) -> {
+			aProcess.start();
+		});
+
+		processList.forEach((aProcess) -> {
+			try {
+				aProcess.join();
+			} catch (InterruptedException exception) {
+
+			}
 		});
 		return;
 	}
