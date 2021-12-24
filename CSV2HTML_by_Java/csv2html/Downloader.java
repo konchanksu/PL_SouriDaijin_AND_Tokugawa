@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import utility.ImageUtility;
 
@@ -56,9 +57,10 @@ public class Downloader extends IO {
 	 */
 	private void downloadPictures(int indexOfPicture) {
 
-		List<Thread> processList = new ArrayList<>();
+		List<CompletableFuture<Void>> processList = new ArrayList<>();
+
 		super.table().tuples().forEach((aTuple) -> {
-			processList.add(new Thread(() -> {
+			processList.add(CompletableFuture.runAsync(() -> {
 				String pictureName = aTuple.values().get(indexOfPicture);
 				BufferedImage anImage = ImageUtility.readImageFromURL(super.attributes().baseUrl() + pictureName);
 				File saveImageFile = new File(super.attributes().baseDirectory(), pictureName);
@@ -66,18 +68,8 @@ public class Downloader extends IO {
 				ImageUtility.writeImage(anImage, saveImageFile);
 			}));
 		});
-
-		processList.forEach((aProcess) -> {
-			aProcess.start();
-		});
-
-		processList.forEach((aProcess) -> {
-			try {
-				aProcess.join();
-			} catch (InterruptedException exception) {
-
-			}
-		});
+		CompletableFuture.allOf(processList.toArray(new CompletableFuture<?>[processList.size()]))
+				.join();
 		return;
 	}
 
