@@ -23,6 +23,8 @@ from csv2html.writer import Writer
 
 # pylint: disable=R0201
 # R0201: Method could be a function (no-self-use)
+# pylint: disable=C0103
+# C0103: Argument name "classOfAttributes" doesn't conform to '[a-z_][a-z0-9_]{2,30}$' pattern (invalid-name)
 
 class Translator:
 	"""トランスレータ：CSVファイルをHTMLページへと変換するプログラム。"""
