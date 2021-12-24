@@ -3,14 +3,14 @@ package csv2html;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 属性リスト：情報テーブルを入出力する際の属性情報を記憶。
  */
-abstract class Attributes extends Object
-{
+abstract class Attributes extends Object {
 	/**
 	 * ベースとなるディレクトリを記憶する（クラス変数）フィールド。
 	 */
@@ -29,12 +29,11 @@ abstract class Attributes extends Object
 	/**
 	 * 属性リストを作成するコンストラクタ。
 	 */
-	public Attributes()
-	{
+	public Attributes() {
 		super();
 
-		this.keys = new ArrayList<String>();
-		this.names = new ArrayList<String>();
+		this.keys = Collections.synchronizedList(new ArrayList<String>());
+		this.names = Collections.synchronizedList(new ArrayList<String>());
 
 		return;
 	}
@@ -44,10 +43,11 @@ abstract class Attributes extends Object
 	 * @param index インデックス
 	 * @return 名前（キー）
 	 */
-	protected String at(int index)
-	{
+	protected String at(int index) {
 		String aString = this.nameAt(index);
-		if (aString.length() < 1) { aString = this.keyAt(index); }
+		if (aString.length() < 1) {
+			aString = this.keyAt(index);
+		}
 
 		return aString;
 	}
@@ -69,11 +69,12 @@ abstract class Attributes extends Object
 	 * @param kindString 種別を表す文字列
 	 * @return ページのためのディレクトリ
 	 */
-	public String baseDirectory(String kindString)
-	{
+	public String baseDirectory(String kindString) {
 		// ベースとなるディレクトリ（ページを生成するためのフォルダ）の記憶が水に流されるまで
 		// シングルトン（1回だけ）であることを保証する。
-		if (Attributes.baseDirectory != null) { return Attributes.baseDirectory; }
+		if (Attributes.baseDirectory != null) {
+			return Attributes.baseDirectory;
+		}
 
 		Date aDate = new Date();
 		// SimpleDateFormat aFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -85,7 +86,9 @@ abstract class Attributes extends Object
 		aString = aString + File.separator + "CSV2HTML_" + kindString + "_" + dateString;
 		File aDirectory = new File(aString);
 		// ページのためのディレクトリが存在するならば消去しておく。
-		if (aDirectory.exists()) { IO.deleteFileOrDirectory(aDirectory); }
+		if (aDirectory.exists()) {
+			IO.deleteFileOrDirectory(aDirectory);
+		}
 		aDirectory.mkdirs();
 
 		Attributes.baseDirectory = aDirectory.getPath() + File.separator;
@@ -109,16 +112,14 @@ abstract class Attributes extends Object
 	 * ページのためのローカルなHTMLのインデックスファイル(index.html)を文字列で応答する。
 	 * @return ページのためのローカルなHTMLのインデックスファイル文字列
 	 */
-	public String indexHTML()
-	{
+	public String indexHTML() {
 		return "index.html";
 	}
 
 	/**
 	 * ベースとなるディレクトリの記憶を水に流す。
 	 */
-	public static void flushBaseDirectory()
-	{
+	public static void flushBaseDirectory() {
 		Attributes.baseDirectory = null;
 
 		return;
@@ -129,12 +130,12 @@ abstract class Attributes extends Object
 	 * @param aString キー
 	 * @return インデックス
 	 */
-	protected int indexOf(String aString)
-	{
+	protected int indexOf(String aString) {
 		int index = 0;
-		for (String aKey : this.keys)
-		{
-			if (aString.compareTo(aKey) == 0) { return index; }
+		for (String aKey : this.keys) {
+			if (aString.compareTo(aKey) == 0) {
+				return index;
+			}
 			index++;
 		}
 
@@ -145,8 +146,7 @@ abstract class Attributes extends Object
 	 * 在位日数のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfDays()
-	{
+	public int indexOfDays() {
 		return this.indexOf("days");
 	}
 
@@ -154,8 +154,7 @@ abstract class Attributes extends Object
 	 * 画像のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfImage()
-	{
+	public int indexOfImage() {
 		return this.indexOf("image");
 	}
 
@@ -163,8 +162,7 @@ abstract class Attributes extends Object
 	 * ふりがなのインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfKana()
-	{
+	public int indexOfKana() {
 		return this.indexOf("kana");
 	}
 
@@ -172,8 +170,7 @@ abstract class Attributes extends Object
 	 * 氏名のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfName()
-	{
+	public int indexOfName() {
 		return this.indexOf("name");
 	}
 
@@ -181,8 +178,7 @@ abstract class Attributes extends Object
 	 * 番号のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfNo()
-	{
+	public int indexOfNo() {
 		return this.indexOf("no");
 	}
 
@@ -190,8 +186,7 @@ abstract class Attributes extends Object
 	 * 在位期間のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfPeriod()
-	{
+	public int indexOfPeriod() {
 		return this.indexOf("period");
 	}
 
@@ -199,8 +194,7 @@ abstract class Attributes extends Object
 	 * 縮小画像のインデックスを応答する。
 	 * @return インデックス
 	 */
-	public int indexOfThumbnail()
-	{
+	public int indexOfThumbnail() {
 		return this.indexOf("thumbnail");
 	}
 
@@ -209,8 +203,7 @@ abstract class Attributes extends Object
 	 * @param index インデックス
 	 * @return キー
 	 */
-	protected String keyAt(int index)
-	{
+	protected String keyAt(int index) {
 		return this.keys().get(index);
 	}
 
@@ -218,8 +211,7 @@ abstract class Attributes extends Object
 	 * キー群を応答する。
 	 * @return キー群
 	 */
-	public List<String> keys()
-	{
+	public List<String> keys() {
 		return this.keys;
 	}
 
@@ -228,8 +220,7 @@ abstract class Attributes extends Object
 	 * @param index インデックス
 	 * @return 名前
 	 */
-	protected String nameAt(int index)
-	{
+	protected String nameAt(int index) {
 		return this.names().get(index);
 	}
 
@@ -237,8 +228,7 @@ abstract class Attributes extends Object
 	 * 名前群を応答する。
 	 * @return 名前群
 	 */
-	public List<String> names()
-	{
+	public List<String> names() {
 		return this.names;
 	}
 
@@ -246,11 +236,9 @@ abstract class Attributes extends Object
 	 * 名前群を設定する。
 	 * @param aCollection 名前群
 	 */
-	public void names(List<String> aCollection)
-	{
-		List<String> aList = new ArrayList<String>();
-		for (String aString : aCollection)
-		{
+	public void names(List<String> aCollection) {
+		List<String> aList = Collections.synchronizedList(new ArrayList<String>());
+		for (String aString : aCollection) {
 			aList.add(aString);
 		}
 		this.names = aList;
@@ -262,8 +250,7 @@ abstract class Attributes extends Object
 	 * 属性リストの長さを応答する。
 	 * @return 属性リストの長さ
 	 */
-	public int size()
-	{
+	public int size() {
 		return this.keys().size();
 	}
 
@@ -277,15 +264,15 @@ abstract class Attributes extends Object
 	 * 自分自身を文字列にして、それを応答する。
 	 * @return 自分自身の文字列
 	 */
-	public String toString()
-	{
+	public String toString() {
 		StringBuffer aBuffer = new StringBuffer();
 		Class<?> aClass = this.getClass();
 		aBuffer.append(aClass.getName());
 		aBuffer.append("[");
-		for (int index = 0; index < this.size(); index++)
-		{
-			if (index != 0) { aBuffer.append(","); }
+		for (int index = 0; index < this.size(); index++) {
+			if (index != 0) {
+				aBuffer.append(",");
+			}
 			aBuffer.append(this.at(index));
 		}
 		aBuffer.append("]");

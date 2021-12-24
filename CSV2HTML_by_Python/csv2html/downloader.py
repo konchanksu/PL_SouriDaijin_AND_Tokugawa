@@ -41,7 +41,7 @@ class Downloader(IO):
 			csv_text = a_file.read().decode('utf-8')
 
 		# 文字列をcsvに書き出し
-		with open(local_csv_file, "w") as a_file:
+		with open(local_csv_file, "w", encoding="utf-8") as a_file:
 			a_file.write(csv_text)
 
 
@@ -54,13 +54,15 @@ class Downloader(IO):
 
 		# 画像ファイルをダウンロード
 		for image_filename in image_filenames:
-			thread = threading.Thread(target=self.download_image, args=(base_url, base_dir, image_filename,))
+			thread = threading.Thread(target=Downloader.download_image, args=(base_url, base_dir, image_filename,))
 			thread_list.append(thread)
 			thread.start()
 		for thread in thread_list:
 			thread.join()
 
-	def download_image(self, base_url, base_dir, image_filename):
+	@staticmethod
+	def download_image(base_url, base_dir, image_filename):
+		""" 画像一つをダウンロードする"""
 		with urllib.request.urlopen(base_url + image_filename) as a_file:
 			image_data = a_file.read()
 
@@ -76,9 +78,9 @@ class Downloader(IO):
 		"""すべて（情報を記したCSVファイル・画像ファイル群・縮小画像ファイル群）をダウンロードする。"""
 		self.download_csv()
 		Reader(super().table()).perform()
-		thumbnailThread = threading.Thread(target=self.download_images, args=(super().table().thumbnail_filenames(),))
-		imageThread = threading.Thread(target=self.download_images, args=(super().table().image_filenames(),))
-		thumbnailThread.start()
-		imageThread.start()
-		thumbnailThread.join()
-		imageThread.join()
+		thumbnail_thread = threading.Thread(target=self.download_images, args=(super().table().thumbnail_filenames(),))
+		image_thread = threading.Thread(target=self.download_images, args=(super().table().image_filenames(),))
+		thumbnail_thread.start()
+		image_thread.start()
+		thumbnail_thread.join()
+		image_thread.join()
