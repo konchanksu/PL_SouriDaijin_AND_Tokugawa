@@ -68,7 +68,7 @@ public class Downloader extends IO {
 				ImageUtility.writeImage(anImage, saveImageFile);
 			}));
 		});
-		CompletableFuture.allOf(processList.toArray(new CompletableFuture<?>[processList.size()]))
+		CompletableFuture.allOf(processList.toArray(new CompletableFuture<?>[0]))
 				.join();
 		return;
 	}
