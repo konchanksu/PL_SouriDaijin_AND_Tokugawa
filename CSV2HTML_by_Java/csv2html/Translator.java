@@ -111,18 +111,23 @@ public class Translator extends Object {
 	 * CSVファイルをHTMLページへ変換する。
 	 */
 	public void execute() {
-		// 必要な情報をダウンロードする。
-		Downloader aDownloader = new Downloader(this.inputTable);
-		aDownloader.perform();
+		try {
+			// 必要な情報をダウンロードする。
+			Downloader aDownloader = new Downloader(this.inputTable);
+			aDownloader.start();
+			aDownloader.join();
 
-		// CSVに由来するテーブルをHTMLに由来するテーブルへと変換する。
-		System.out.println(this.inputTable);
-		this.translate();
-		System.out.println(this.outputTable);
+			// CSVに由来するテーブルをHTMLに由来するテーブルへと変換する。
+			// System.out.println(this.inputTable);
+			this.translate();
+			// System.out.println(this.outputTable);
 
-		// HTMLに由来するテーブルから書き出す。
-		Writer aWriter = new Writer(this.outputTable);
-		aWriter.perform();
+			// HTMLに由来するテーブルから書き出す。
+			Writer aWriter = new Writer(this.outputTable);
+			aWriter.perform();
+		} catch (InterruptedException exception) {
+
+		}
 
 		// ブラウザを立ち上げて閲覧する。
 		try {
