@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 /**
  * 仮のテスト
  * 動くか試すだけ
+ * 
+ * @author Kajiwara Ryutaro
+ * @version 1.0.0
  */
 class SampleTest {
     /**
