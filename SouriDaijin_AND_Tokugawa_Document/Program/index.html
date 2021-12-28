@@ -1,20 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta
       name="keywords"
       content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming"
-    />
+    >
     <meta
       name="description"
       content="プログラミング言語「総理大臣ページ生成」"
-    />
-    <meta name="author" content="AOKI Atsushi" />
-    <link rev="made" href="mailto:atsushi@cc.kyoto-su.ac.jp" />
-    <link rel="index" href="index-j.html" />
+    >
+    <meta name="author" content="AOKI Atsushi">
+    <link rev="made" href="mailto:atsushi@cc.kyoto-su.ac.jp">
+    <link rel="index" href="index-j.html">
     <style type="text/css">
       <!--
       body {
@@ -259,7 +259,7 @@
   </div>
   <hr>
   <h2>プログラミング言語「総理大臣ページ生成」プログラム</h2>
-  <div id="menu">
+  <div id="menuLang">
     <ul>
       <li><a href="../Program/index.html" class="current">Javaバージョン</a></li>
       <li><a href="../Program/index2.html">Pythonバージョン</a></li>
@@ -344,9 +344,9 @@
     <code>
 ANT = env LC_ALL=ja_JP.UTF-8 ant
 ARCHIVE = $(shell basename `pwd`)
-PMD_BIN = "pmd-bin"
-PMD_BASE_DIR = "pmd"
-PMD_RULES = "pmd-rules.xml"
+PMD_BIN = &quot;pmd-bin&quot;
+PMD_BASE_DIR = &quot;pmd&quot;
+PMD_RULES = &quot;pmd-rules.xml&quot;
 PMD_COMMAND = ./$(PMD_BIN)/run.sh pmd -d ./ -f textcolor -R ./$(PMD_BASE_DIR)/${PMD_RULES} -l java
 PMD_COMMAND_HTML  = ./$(PMD_BIN)/run.sh pmd -d ./ -f html -R ./$(PMD_BASE_DIR)/${PMD_RULES}  -l java
 PMD_REPORT_HTML = pmd_report.html
@@ -356,7 +356,7 @@ all:
 
 clean:
   $(ANT) clean
-  @find . -maxdepth 1 -name "$(PMD_REPORT_HTML)" -exec echo rm -f {} ";" -exec rm -f {} ";"
+  @find . -maxdepth 1 -name &quot;$(PMD_REPORT_HTML)&quot; -exec echo rm -f {} &quot;;&quot; -exec rm -f {} &quot;;&quot;
 
 test:
   $(ANT) test
@@ -371,13 +371,13 @@ pmd_prepare:all
 #PMDを実行
 pmd:pmd_prepare
   @echo $(PMD_COMMAND)
-  @eval $(PMD_COMMAND) 2> /dev/null
+  @eval $(PMD_COMMAND) 2&gt; /dev/null
 
 #PMDのHTML出力
 pmd_html:pmd_prepare
-  @echo $(PMD_COMMAND_HTML) '> ./$(PMD_REPORT_HTML)'
-  -@eval $(PMD_COMMAND_HTML) > ./$(PMD_REPORT_HTML) 2> /dev/null
-  open -a 'Safari' ./$(PMD_REPORT_HTML)
+  @echo $(PMD_COMMAND_HTML) &#039;&gt; ./$(PMD_REPORT_HTML)&#039;
+  -@eval $(PMD_COMMAND_HTML) &gt; ./$(PMD_REPORT_HTML) 2&gt; /dev/null
+  open -a &#039;Safari&#039; ./$(PMD_REPORT_HTML)
 
 #JUnitの実行
 unittest:
@@ -388,17 +388,16 @@ doc:
 
 #PMD関連のディレクトリ・フォルダを完全に削除
 wipe:clean
-  @read -p "本当に削除しますか? (y/n): " INPUT;if [ "$${INPUT}" != 'y' ];then echo process stopped;exit 1;fi;
-  @find . -name ".DS_Store" -exec echo rm -f {} ";" -exec rm -f {} ";"
-  @find . -maxdepth 1 -name "$(PMD_BIN)" -exec echo rm -f {} ";" -exec rm -f {} ";"
-  @find . -maxdepth 1 -type d -name "$(PMD_DIR)" -exec echo rm -rf {} ";" -exec rm -rf {} ";"
+  @read -p &quot;本当に削除しますか? (y/n): &quot; INPUT;if [ &quot;$${INPUT}&quot; != &#039;y&#039; ];then echo process stopped;exit 1;fi;
+  @find . -name &quot;.DS_Store&quot; -exec echo rm -f {} &quot;;&quot; -exec rm -f {} &quot;;&quot;
+  @find . -maxdepth 1 -name &quot;$(PMD_BIN)&quot; -exec echo rm -f {} &quot;;&quot; -exec rm -f {} &quot;;&quot;
+  @find . -maxdepth 1 -type d -name &quot;$(PMD_DIR)&quot; -exec echo rm -rf {} &quot;;&quot; -exec rm -rf {} &quot;;&quot;
 
 #zip:
 # $(ANT) zip
 zip: clean
   (cd ../ ; zip -r ./$(ARCHIVE).zip ./$(ARCHIVE)/)
-
-      </code>
+    </code>
     </pre>
 
     <div class="belt">
@@ -406,177 +405,177 @@ zip: clean
     </div>
     <pre>
       <code>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
 
-&lt;project name="CSV2HTML" default="all" basedir="."&gt;
+&amp;lt;project name=&quot;CSV2HTML&quot; default=&quot;all&quot; basedir=&quot;.&quot;&amp;gt;
 
-  &lt;property name="homedir" value="${user.home}" /&gt;
-  &lt;property name="package" value="csv2html" /&gt;
-  &lt;property name="utility" value="utility" /&gt;
-  &lt;property name="packagenames" value="${package},${utility}" /&gt;
-  &lt;property name="destdir" value="./Classes" /&gt;
-  &lt;property name="docdir" value="./JavaDoc" /&gt;
-  &lt;property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" /&gt;
-  &lt;property name="copyright" value="Copyright 2008-2017 AOKI Atsushi. All Rights Reserved." /&gt;
-  &lt;property name="zipname" value="${ant.project.name}" /&gt;
-  &lt;property name="junitdir" value="./junit" /&gt;
-  &lt;property name="junitjar" value="${junitdir}/junit-platform-console-standalone-1.7.2.jar" /&gt;
-  &lt;property name="reportdir" value="${junitdir}/test-report" /&gt;
+  &amp;lt;property name=&quot;homedir&quot; value=&quot;${user.home}&quot; /&amp;gt;
+  &amp;lt;property name=&quot;package&quot; value=&quot;csv2html&quot; /&amp;gt;
+  &amp;lt;property name=&quot;utility&quot; value=&quot;utility&quot; /&amp;gt;
+  &amp;lt;property name=&quot;packagenames&quot; value=&quot;${package},${utility}&quot; /&amp;gt;
+  &amp;lt;property name=&quot;destdir&quot; value=&quot;./Classes&quot; /&amp;gt;
+  &amp;lt;property name=&quot;docdir&quot; value=&quot;./JavaDoc&quot; /&amp;gt;
+  &amp;lt;property name=&quot;instdir&quot; value=&quot;./${ant.project.name}.app/Contents/Resources/Java&quot; /&amp;gt;
+  &amp;lt;property name=&quot;copyright&quot; value=&quot;Copyright 2008-2017 AOKI Atsushi. All Rights Reserved.&quot; /&amp;gt;
+  &amp;lt;property name=&quot;zipname&quot; value=&quot;${ant.project.name}&quot; /&amp;gt;
+  &amp;lt;property name=&quot;junitdir&quot; value=&quot;./junit&quot; /&amp;gt;
+  &amp;lt;property name=&quot;junitjar&quot; value=&quot;${junitdir}/junit-platform-console-standalone-1.7.2.jar&quot; /&amp;gt;
+  &amp;lt;property name=&quot;reportdir&quot; value=&quot;${junitdir}/test-report&quot; /&amp;gt;
 
 
-  &lt;target name="all" depends="jar" description="build all"&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;all&quot; depends=&quot;jar&quot; description=&quot;build all&quot;&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="prepare" depends="" description="prepare to compile"&gt;
-    &lt;mkdir dir="${destdir}" /&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;prepare&quot; depends=&quot;&quot; description=&quot;prepare to compile&quot;&amp;gt;
+    &amp;lt;mkdir dir=&quot;${destdir}&quot; /&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="compile" depends="prepare" description="compile all sources"&gt;
-    &lt;javac
-      fork="true"
-      srcdir="${basedir}"
-      destdir="${destdir}"
-      includeAntRuntime="true"
-      encoding="UTF-8"
-      deprecation="on"
-      verbose="false"&gt;
-      &lt;compilerarg value="-J-Dfile.encoding=UTF8" /&gt;
-      &lt;compilerarg value="-Xlint:all" /&gt;
-      &lt;classpath&gt;
-        &lt;pathelement location="." /&gt;
-        &lt;pathelement location="${utility}.jar" /&gt;
-        &lt;pathelement location="${junitjar}" /&gt;
-      &lt;/classpath&gt;
-    &lt;/javac&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;compile&quot; depends=&quot;prepare&quot; description=&quot;compile all sources&quot;&amp;gt;
+    &amp;lt;javac
+      fork=&quot;true&quot;
+      srcdir=&quot;${basedir}&quot;
+      destdir=&quot;${destdir}&quot;
+      includeAntRuntime=&quot;true&quot;
+      encoding=&quot;UTF-8&quot;
+      deprecation=&quot;on&quot;
+      verbose=&quot;false&quot;&amp;gt;
+      &amp;lt;compilerarg value=&quot;-J-Dfile.encoding=UTF8&quot; /&amp;gt;
+      &amp;lt;compilerarg value=&quot;-Xlint:all&quot; /&amp;gt;
+      &amp;lt;classpath&amp;gt;
+        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
+        &amp;lt;pathelement location=&quot;${utility}.jar&quot; /&amp;gt;
+        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
+      &amp;lt;/classpath&amp;gt;
+    &amp;lt;/javac&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="jar" depends="compile" description="make jar file"&gt;
-    &lt;jar
-      jarfile="${package}.jar"
-      basedir="${destdir}"
-      manifest="${package}.mf"&gt;
-      &lt;zipfileset src="${utility}.jar" /&gt;
-      &lt;zipfileset src="${junitjar}" /&gt;
-    &lt;/jar&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;jar&quot; depends=&quot;compile&quot; description=&quot;make jar file&quot;&amp;gt;
+    &amp;lt;jar
+      jarfile=&quot;${package}.jar&quot;
+      basedir=&quot;${destdir}&quot;
+      manifest=&quot;${package}.mf&quot;&amp;gt;
+      &amp;lt;zipfileset src=&quot;${utility}.jar&quot; /&amp;gt;
+      &amp;lt;zipfileset src=&quot;${junitjar}&quot; /&amp;gt;
+    &amp;lt;/jar&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="clean" description="cleaning
-    &lt;delete dir="${destdir}" /&gt;
-    &lt;delete file="${package}.jar" /&gt;
-    &lt;delete dir="${docdir}" /&gt;
-    &lt;delete dir="${instdir}" /&gt;
-    &lt;delete file="../${zipname}.zip" /&gt;
-    &lt;delete dir="${reportdir}" /&gt;
-    &lt;delete&gt;
-      &lt;fileset dir="${package}" includes="*.class" /&gt;
-    &lt;/delete&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;clean&quot; description=&quot;cleaning
+    &amp;lt;delete dir=&quot;${destdir}&quot; /&amp;gt;
+    &amp;lt;delete file=&quot;${package}.jar&quot; /&amp;gt;
+    &amp;lt;delete dir=&quot;${docdir}&quot; /&amp;gt;
+    &amp;lt;delete dir=&quot;${instdir}&quot; /&amp;gt;
+    &amp;lt;delete file=&quot;../${zipname}.zip&quot; /&amp;gt;
+    &amp;lt;delete dir=&quot;${reportdir}&quot; /&amp;gt;
+    &amp;lt;delete&amp;gt;
+      &amp;lt;fileset dir=&quot;${package}&quot; includes=&quot;*.class&quot; /&amp;gt;
+    &amp;lt;/delete&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="test" depends="all" description="test"&gt;
-    &lt;exec executable="java" spawn="false"&gt;
-      &lt;arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar" /&gt;
+  &amp;lt;target name=&quot;test&quot; depends=&quot;all&quot; description=&quot;test&quot;&amp;gt;
+    &amp;lt;exec executable=&quot;java&quot; spawn=&quot;false&quot;&amp;gt;
+      &amp;lt;arg line=&quot;-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar&quot; /&amp;gt;
+    &amp;lt;/exec&amp;gt;
+    &lt;!--
+    &lt;exec executable=&quot;open&quot; spawn=&quot;false&quot;&gt;
+      &lt;arg line=&quot;${homedir}/Desktop/${ant.project.name}/index.html&quot; /&gt;
     &lt;/exec&gt;
-    <!--
-    <exec executable="open" spawn="false">
-      <arg line="${homedir}/Desktop/${ant.project.name}/index.html" />
-    </exec>
-    -->
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+    --&gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="install" depends="all" description="install into application"&gt;
-    &lt;copy file="${package}.jar" todir="${instdir}" /&gt;
-    &lt;exec executable="chmod"&gt;
-      &lt;arg line="755 ${instdir}/../../MacOS/applet" /&gt;
-    &lt;/exec&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;install&quot; depends=&quot;all&quot; description=&quot;install into application&quot;&amp;gt;
+    &amp;lt;copy file=&quot;${package}.jar&quot; todir=&quot;${instdir}&quot; /&amp;gt;
+    &amp;lt;exec executable=&quot;chmod&quot;&amp;gt;
+      &amp;lt;arg line=&quot;755 ${instdir}/../../MacOS/applet&quot; /&amp;gt;
+    &amp;lt;/exec&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="doc" depends="all" description="make document (javadoc)"&gt;
-    &lt;mkdir dir="${docdir}" /&gt;
-    &lt;javadoc
-      locale="ja_JP"
-      sourcepath="${basedir}"
-      destdir="${docdir}"
-      packagenames="${packagenames}"
-      author="true"
-      version="true"
-      charset="UTF-8"
-      encoding="UTF-8"
-      docencoding="UTF-8"
-      linksource="yes"
-      additionalparam="-J-Dfile.encoding=UTF-8"
-      access="private"&gt;
-      &lt;doctitle&gt;${doc-title}</doctitle&gt;
-      &lt;bottom&gt;${copyright}</bottom&gt;
-      &lt;classpath&gt;
-        &lt;pathelement location="." /&gt;
-        &lt;pathelement location="${utility}.jar" /&gt;
-        &lt;pathelement location="${junitjar}" /&gt;
-      &lt;/classpath&gt;
-    &lt;/javadoc&gt;
-    &lt;exec executable="open"&gt;
-      &lt;arg line="${docdir}/index.html" /&gt;
-    &lt;/exec&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &amp;lt;target name=&quot;doc&quot; depends=&quot;all&quot; description=&quot;make document (javadoc)&quot;&amp;gt;
+    &amp;lt;mkdir dir=&quot;${docdir}&quot; /&amp;gt;
+    &amp;lt;javadoc
+      locale=&quot;ja_JP&quot;
+      sourcepath=&quot;${basedir}&quot;
+      destdir=&quot;${docdir}&quot;
+      packagenames=&quot;${packagenames}&quot;
+      author=&quot;true&quot;
+      version=&quot;true&quot;
+      charset=&quot;UTF-8&quot;
+      encoding=&quot;UTF-8&quot;
+      docencoding=&quot;UTF-8&quot;
+      linksource=&quot;yes&quot;
+      additionalparam=&quot;-J-Dfile.encoding=UTF-8&quot;
+      access=&quot;private&quot;&amp;gt;
+      &amp;lt;doctitle&amp;gt;${doc-title}&lt;/doctitle&amp;gt;
+      &amp;lt;bottom&amp;gt;${copyright}&lt;/bottom&amp;gt;
+      &amp;lt;classpath&amp;gt;
+        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
+        &amp;lt;pathelement location=&quot;${utility}.jar&quot; /&amp;gt;
+        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
+      &amp;lt;/classpath&amp;gt;
+    &amp;lt;/javadoc&amp;gt;
+    &amp;lt;exec executable=&quot;open&quot;&amp;gt;
+      &amp;lt;arg line=&quot;${docdir}/index.html&quot; /&amp;gt;
+    &amp;lt;/exec&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  <!-- 単体テスト追加 -->
-  &lt;target name="unittest.junit.launcher" depends="all" description="junit launcher"&gt;
-    &lt;delete dir="${reportdir}" /&gt;
-    &lt;junitlauncher haltOnFailure="true" printSummary="true"&gt;
-      &lt;classpath&gt;
-        &lt;pathelement location="." /&gt;
-        &lt;pathelement location="${junitjar}" /&gt;
-      &lt;/classpath&gt;
-      &lt;testclasses outputdir="${reportdir}"&gt;
-        &lt;fileset dir="${destdir}"&gt;
-          &lt;include name="*.class"/&gt;
-        &lt;/fileset&gt;
-        &lt;listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/&gt;
-        &lt;listener type="legacy-plain" sendSysOut="true" /&gt;
-      &lt;/testclasses&gt;
-    &lt;/junitlauncher&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &lt;!-- 単体テスト追加 --&gt;
+  &amp;lt;target name=&quot;unittest.junit.launcher&quot; depends=&quot;all&quot; description=&quot;junit launcher&quot;&amp;gt;
+    &amp;lt;delete dir=&quot;${reportdir}&quot; /&amp;gt;
+    &amp;lt;junitlauncher haltOnFailure=&quot;true&quot; printSummary=&quot;true&quot;&amp;gt;
+      &amp;lt;classpath&amp;gt;
+        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
+        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
+      &amp;lt;/classpath&amp;gt;
+      &amp;lt;testclasses outputdir=&quot;${reportdir}&quot;&amp;gt;
+        &amp;lt;fileset dir=&quot;${destdir}&quot;&amp;gt;
+          &amp;lt;include name=&quot;*.class&quot;/&amp;gt;
+        &amp;lt;/fileset&amp;gt;
+        &amp;lt;listener type=&quot;legacy-xml&quot; sendSysOut=&quot;true&quot; sendSysErr=&quot;true&quot;/&amp;gt;
+        &amp;lt;listener type=&quot;legacy-plain&quot; sendSysOut=&quot;true&quot; /&amp;gt;
+      &amp;lt;/testclasses&amp;gt;
+    &amp;lt;/junitlauncher&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  <!-- 単体テスト追加 -->
-  &lt;target name="unittest.console.launcher" depends="all" description="console launcher"&gt;
-    &lt;java classpath="${package}.jar" classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="false"&gt;
-      &lt;arg value="--scan-class-path=${destdir}" /&gt;
-      &lt;arg line="--reports-dir ${reportdir}" /&gt;
-      &lt;jvmarg value="-Dfile.encoding=UTF-8" /&gt;
-    &lt;/java&gt;
-    &lt;junitreport todir="${reportdir}"&gt;
-      &lt;fileset dir="${reportdir}"&gt;
-        &lt;include name="TEST-*.xml"/&gt;
-      &lt;/fileset&gt;
-      &lt;report format="noframes" todir="${reportdir}/html"/&gt;
-    &lt;/junitreport&gt;
-    &lt;exec executable="open" spawn="true"&gt;
-      &lt;arg line="-a 'Safari' ${reportdir}/html/junit-noframes.html" /&gt;
-    &lt;/exec&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &lt;!-- 単体テスト追加 --&gt;
+  &amp;lt;target name=&quot;unittest.console.launcher&quot; depends=&quot;all&quot; description=&quot;console launcher&quot;&amp;gt;
+    &amp;lt;java classpath=&quot;${package}.jar&quot; classname=&quot;org.junit.platform.console.ConsoleLauncher&quot; fork=&quot;true&quot; failonerror=&quot;false&quot;&amp;gt;
+      &amp;lt;arg value=&quot;--scan-class-path=${destdir}&quot; /&amp;gt;
+      &amp;lt;arg line=&quot;--reports-dir ${reportdir}&quot; /&amp;gt;
+      &amp;lt;jvmarg value=&quot;-Dfile.encoding=UTF-8&quot; /&amp;gt;
+    &amp;lt;/java&amp;gt;
+    &amp;lt;junitreport todir=&quot;${reportdir}&quot;&amp;gt;
+      &amp;lt;fileset dir=&quot;${reportdir}&quot;&amp;gt;
+        &amp;lt;include name=&quot;TEST-*.xml&quot;/&amp;gt;
+      &amp;lt;/fileset&amp;gt;
+      &amp;lt;report format=&quot;noframes&quot; todir=&quot;${reportdir}/html&quot;/&amp;gt;
+    &amp;lt;/junitreport&amp;gt;
+    &amp;lt;exec executable=&quot;open&quot; spawn=&quot;true&quot;&amp;gt;
+      &amp;lt;arg line=&quot;-a &#039;Safari&#039; ${reportdir}/html/junit-noframes.html&quot; /&amp;gt;
+    &amp;lt;/exec&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  <!-- 単体テスト -->
-  &lt;target name="unittest" depends="unittest.junit.launcher, unittest.console.launcher"&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
+  &lt;!-- 単体テスト --&gt;
+  &amp;lt;target name=&quot;unittest&quot; depends=&quot;unittest.junit.launcher, unittest.console.launcher&quot;&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
 
-  &lt;target name="zip" depends="clean" description="make zip file"&gt;
-    &lt;delete file="../${zipname}.zip" /&gt;
-    &lt;zip destfile="../${zipname}.zip"&gt;
-      &lt;zipfileset dir="." prefix="${zipname}" /&gt;
-    &lt;/zip&gt;
-    &lt;exec executable="date" spawn="false" /&gt;
-  &lt;/target&gt;
-&lt;/project&gt;
+  &amp;lt;target name=&quot;zip&quot; depends=&quot;clean&quot; description=&quot;make zip file&quot;&amp;gt;
+    &amp;lt;delete file=&quot;../${zipname}.zip&quot; /&amp;gt;
+    &amp;lt;zip destfile=&quot;../${zipname}.zip&quot;&amp;gt;
+      &amp;lt;zipfileset dir=&quot;.&quot; prefix=&quot;${zipname}&quot; /&amp;gt;
+    &amp;lt;/zip&amp;gt;
+    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
+  &amp;lt;/target&amp;gt;
+&amp;lt;/project&amp;gt;
       </code>
     </pre>
 
@@ -587,7 +586,7 @@ zip: clean
     <code>
 #!/bin/sh
 
-: &lt;&lt;EOF_COMMENT
+: &amp;lt;&amp;lt;EOF_COMMENT
     PMDをダウンロード・展開し、PMDのbinディレクトリのシンボリックリンクを作成する.
     また、pmd-rulesが存在しない場合はそれもダウンロードする
 
@@ -596,34 +595,33 @@ zip: clean
 EOF_COMMENT
 
 #これらはMakefileと文字列を合わせる
-PMD_BIN="pmd-bin"
-PMD_BASE_DIR="pmd"
-PMD_RULES="pmd-rules.xml"
+PMD_BIN=&quot;pmd-bin&quot;
+PMD_BASE_DIR=&quot;pmd&quot;
+PMD_RULES=&quot;pmd-rules.xml&quot;
 
-PMD_VERSION="6.40.0"
-PMD_DIR="pmd-bin-${PMD_VERSION}"
-PMD_URL="https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_VERSION}/${PMD_DIR}.zip"
-PMD_RULES_URL="https://raw.githubusercontent.com/pmd/pmd/master/pmd-java/src/main/resources/rulesets/java/quickstart.xml"
+PMD_VERSION=&quot;6.40.0&quot;
+PMD_DIR=&quot;pmd-bin-${PMD_VERSION}&quot;
+PMD_URL=&quot;https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_VERSION}/${PMD_DIR}.zip&quot;
+PMD_RULES_URL=&quot;https://raw.githubusercontent.com/pmd/pmd/master/pmd-java/src/main/resources/rulesets/java/quickstart.xml&quot;
 
 if [ ! -e ${PMD_BASE_DIR} ]; then
     mkdir ${PMD_BASE_DIR}
 fi
 
-if [ ! -f &quot;${PMD_BASE_DIR}/${PMD_RULES}&quot; ]; then
-    curl -L ${PMD_RULES_URL} -o "./${PMD_BASE_DIR}/${PMD_RULES}"
+if [ ! -f &amp;quot;${PMD_BASE_DIR}/${PMD_RULES}&amp;quot; ]; then
+    curl -L ${PMD_RULES_URL} -o &quot;./${PMD_BASE_DIR}/${PMD_RULES}&quot;
 fi
 
-if [ ! -d "${PMD_BASE_DIR}/${PMD_DIR}" ]; then
+if [ ! -d &quot;${PMD_BASE_DIR}/${PMD_DIR}&quot; ]; then
     curl -OL ${PMD_URL}
-    unzip ${PMD_DIR}.zip -d "${PMD_BASE_DIR}/"
+    unzip ${PMD_DIR}.zip -d &quot;${PMD_BASE_DIR}/&quot;
     rm ${PMD_DIR}.zip
 fi
 
-ln -s "${PMD_BASE_DIR}/${PMD_DIR}/bin" ${PMD_BIN}
+ln -s &quot;${PMD_BASE_DIR}/${PMD_DIR}/bin&quot; ${PMD_BIN}
 
 exit 0
-
-      </code>
+    </code>
     </pre>
 
   <div class="belt">
