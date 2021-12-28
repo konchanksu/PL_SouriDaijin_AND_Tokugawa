@@ -1,257 +1,643 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<meta name="keywords" content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming">
-<meta name="description" content="プログラミング言語「総理大臣ページ生成」">
-<meta name="author" content="AOKI Atsushi">
-<link rev="made" href="mailto:atsushi@cc.kyoto-su.ac.jp">
-<link rel="index" href="index-j.html">
-<style type="text/css">
-<!--
-body {
-  background-color : #ffffff;
-  margin : 20px;
-  padding : 10px;
-  font-family : serif;
-  font-size : 10pt;
-}
-a {
-  text-decoration : underline;
-  color : #000000;
-}
-a:link {
-  background-color : #ffddbb;
-}
-a:visited {
-  background-color : #ccffcc;
-}
-a:hover {
-  background-color : #dddddd;
-}
-a:active {
-  background-color : #dddddd;
-}
-div.belt {
-  background-color : #eeeeee;
-  padding : 0px 4px;
-}
-div.belt-yellow {
-  background-color : #ffffcc;
-  padding : 0px 4px;
-}
-div.belt-blue {
-  background-color : #ddeeff;
-  padding : 0px 4px;
-}
-div.right-small {
-  text-align : right;
-  font-size : 8pt;
-}
-img.border {
-  border-width : 1px;
-  border-color : #000000;
-  vertical-align : middle;
-}
-img.borderless {
-  border-width : 0px;
-  vertical-align : middle;
-}
-p.belt {
-  background-color : #ffeedd;
-  padding : 4px 8px;
-}
-p.belt-blue {
-  background-color : #ddeeff;
-  padding : 4px 8px;
-}
-pre.belt {
-  background-color : #ddeeff;
-  padding : 4px 8px;
-}
-pre.belt-yellow {
-  background-color : #ffffcc;
-  padding : 4px 8px;
-}
-table {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  font-family : serif;
-  font-size : 10pt;
-}
-table.profile {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  font-family : serif;
-  font-size : 10pt;
-  margin-top : 8px;
-  margin-left : 8px;
-  margin-right : 8px;
-  margin-bottom : 8px;
-}
-table.belt {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  background-color : #ffeedd;
-  padding : 0px 0px;
-  width : 100%;
-}
-table.content {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 2px 4px;
-}
-table.font-fixed {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 2px 4px;
-  font-family : monospace;
-}
-table.nest {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 0px 0px;
-}
-td {
-  padding : 0px 0px;
-  vertical-align : middle;
-}
-td.center {
-  text-align : center;
-}
-td.center-half {
-  text-align : center;
-  width : 50%;
-  font-size : 8pt;
-}
-td.center-small {
-  text-align : center;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.center-small-nopadding {
-  text-align : center;
-  font-size : 8pt;
-  padding : 0px 0px;
-}
-td.center-white {
-  text-align : center;
-  background-color : #ffffff;
-}
-td.center-small-white {
-  text-align : center;
-  font-size : 8pt;
-  background-color : #ffffff;
-}
-td.center-border1 {
-  text-align : center;
-  vertical-align : middle;
-  empty-cells : show;
-  border-style : solid;
-  border-width : 1px;
-  border-color : #ffc080;
-  width : 22px;
-  height : 22px;
-}
-td.left-small {
-  text-align : left;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.left-small-white {
-  text-align : left;
-  font-size : 8pt;
-  padding : 0px 4px;
-  background-color : #ffffff;
-}
-td.right-small {
-  text-align : right;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.right-small-white {
-  text-align : right;
-  font-size : 8pt;
-  padding : 0px 4px;
-  background-color : #ffffff;
-}
-th {
-  padding : 0px 0px;
-  vertical-align : middle;
-}
-#menu {
-  margin: 0px 0px 0px 0px;
-  padding: 0px;
-  height: 32px;
-}
-#menu ul {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  text-align: center;
-  clear: both;
-}
-#menu li {
-  margin: 0px 5px 0px 0px;
-  padding: 0px;
-  float: left;
-}
-#menu a {
-  display: block;
-  padding: 2px 4px;
-  text-decoration: none;
-  margin: 0px;
-  font-weight: bold;
-  background: #FFFFFF;
-  color: #333333;
-  border: 1px solid #666666;
-}
-#menu a:hover {
-  display: block;
-  padding: 2px 4px;
-  border-bottom: 1px solid #000000;
-  text-decoration: none;
-  background: #FFCC66;
-}
-#menu .current {
-  background-color: #F45F57;
-  font-weight: bold;
-  color: #FFFFFF;
-  border: 1px solid #333333;
-}
--->
-</style>
-<title>プログラミング言語「総理大臣ページ生成」プログラム</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta
+      name="keywords"
+      content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming"
+    />
+    <meta
+      name="description"
+      content="プログラミング言語「総理大臣ページ生成」"
+    />
+    <meta name="author" content="AOKI Atsushi" />
+    <link rev="made" href="mailto:atsushi@cc.kyoto-su.ac.jp" />
+    <link rel="index" href="index-j.html" />
+    <style type="text/css">
+      <!--
+      body {
+        background-color : #ffffff;
+        margin : 20px;
+        padding : 10px;
+        font-family : serif;
+        font-size : 10pt;
+      }
+      a {
+        text-decoration : underline;
+        color : #000000;
+      }
+      a:link {
+        background-color : #ffddbb;
+      }
+      a:visited {
+        background-color : #ccffcc;
+      }
+      a:hover {
+        background-color : #dddddd;
+      }
+      a:active {
+        background-color : #dddddd;
+      }
+      div.belt {
+        background-color : #eeeeee;
+        padding : 0px 4px;
+      }
+      div.belt-yellow {
+        background-color : #ffffcc;
+        padding : 0px 4px;
+      }
+      div.belt-blue {
+        background-color : #ddeeff;
+        padding : 0px 4px;
+      }
+      div.right-small {
+        text-align : right;
+        font-size : 8pt;
+      }
+      img.border {
+        border-width : 1px;
+        border-color : #000000;
+        vertical-align : middle;
+      }
+      img.borderless {
+        border-width : 0px;
+        vertical-align : middle;
+      }
+      p.belt {
+        background-color : #ffeedd;
+        padding : 4px 8px;
+      }
+      p.belt-blue {
+        background-color : #ddeeff;
+        padding : 4px 8px;
+      }
+      pre.belt {
+        background-color : #ddeeff;
+        padding : 4px 8px;
+      }
+      pre.belt-yellow {
+        background-color : #ffffcc;
+        padding : 4px 8px;
+      }
+      table {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        font-family : serif;
+        font-size : 10pt;
+      }
+      table.profile {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        font-family : serif;
+        font-size : 10pt;
+        margin-top : 8px;
+        margin-left : 8px;
+        margin-right : 8px;
+        margin-bottom : 8px;
+      }
+      table.belt {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        background-color : #ffeedd;
+        padding : 0px 0px;
+        width : 100%;
+      }
+      table.content {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 2px 4px;
+      }
+      table.font-fixed {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 2px 4px;
+        font-family : monospace;
+      }
+      table.nest {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 0px 0px;
+      }
+      td {
+        padding : 0px 0px;
+        vertical-align : middle;
+        text-align : center ;
+      }
+      td.center {
+        text-align : center;
+      }
+      td.center-half {
+        text-align : center;
+        width : 50%;
+        font-size : 8pt;
+      }
+      td.center-small {
+        text-align : center;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.center-small-nopadding {
+        text-align : center;
+        font-size : 8pt;
+        padding : 0px 0px;
+      }
+      td.center-white {
+        text-align : center;
+        background-color : #ffffff;
+      }
+      td.center-small-white {
+        text-align : center;
+        font-size : 8pt;
+        background-color : #ffffff;
+      }
+      td.center-border1 {
+        text-align : center;
+        vertical-align : middle;
+        empty-cells : show;
+        border-style : solid;
+        border-width : 1px;
+        border-color : #ffc080;
+        width : 22px;
+        height : 22px;
+      }
+      td.left-small {
+        text-align : left;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.left-small-white {
+        text-align : left;
+        font-size : 8pt;
+        padding : 0px 4px;
+        background-color : #ffffff;
+      }
+      td.right-small {
+        text-align : right;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.right-small-white {
+        text-align : right;
+        font-size : 8pt;
+        padding : 0px 4px;
+        background-color : #ffffff;
+      }
+      th {
+        padding : 0px 0px;
+        vertical-align : middle;
+      }
+      ul {
+        text-align:left
+      }
+      #menu {
+        margin: 0px 0px 0px 0px;
+        padding: 0px;
+        height: 32px;
+      }
+      #menu ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        text-align: center;
+        clear: both;
+      }
+      #menu li {
+        margin: 0px 5px 0px 0px;
+        padding: 0px;
+        float: left;
+      }
+      #menu a {
+        display: block;
+        padding: 2px 4px;
+        text-decoration: none;
+        margin: 0px;
+        font-weight: bold;
+        background: #FFFFFF;
+        color: #333333;
+        border: 1px solid #666666;
+      }
+      #menu a:hover {
+        display: block;
+        padding: 2px 4px;
+        border-bottom: 1px solid #000000;
+        text-decoration: none;
+        background: #FFCC66;
+      }
+      #menu .current {
+        background-color: #F45F57;
+        font-weight: bold;
+        color: #FFFFFF;
+        border: 1px solid #333333;
+      }
+      -->
+    </style>
+    <title>プログラミング言語「総理大臣ページ生成」プログラム</title>
 </head>
+
 <body>
-<div id="menu">
-<ul>
-  <li><a href="../index.html">ホーム</a></li>
-  <li><a href="../Requirement/index.html">要求仕様書</a></li>
-  <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
-  <li><a href="../BasicDesign/index.html">基本設計書</a></li>
-  <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
-  <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
-  <li><a href="../TestResult/index.html">テスト結果</a></li>
-  <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
-  <li><a href="../Program/index.html" class="current">プログラム</a></li>
-  <li><a href="../Manual/index.html">マニュアル</a></li>
-</ul>
-</div>
-<hr>
-<h2>プログラミング言語「総理大臣ページ生成」プログラム</h2>
-<div class="belt">
-<h3><a name="KanseiSaseteKudasai">完成させてください</a>（javadocのlinksourceや<a href="http://www.cc.kyoto-su.ac.jp/~atsushi/Programs/VisualWorks/TextDoclet/index-j.html">テキストドックレット</a>などで代用可能）</h3>
-</div>
-<hr>
-<div class="right-small">Copyright 20xx Project xx, Updated: 2017/01/11 (Created: 2009/11/11)</div>
+  <div id="menu">
+    <ul>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="../Requirement/index.html">要求仕様書</a></li>
+      <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
+      <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+      <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+      <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
+      <li><a href="../TestResult/index.html">テスト結果</a></li>
+      <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
+      <li><a href="../Program/index.html" class="current">プログラム</a></li>
+      <li><a href="../Manual/index.html">マニュアル</a></li>
+    </ul>
+  </div>
+  <hr>
+  <h2>プログラミング言語「総理大臣ページ生成」プログラム</h2>
+  <div id="menu">
+    <ul>
+      <li><a href="../Program/index.html" class="current">Javaバージョン</a></li>
+      <li><a href="../Program/index2.html">Pythonバージョン</a></li>
+    </ul>
+  </div>
+  <ul>
+    <li><a href="#Example">Example</a></li>
+    <li><a href="#Translator">Translator</a></li>
+    <li><a href="#Table">Table</a></li>
+    <li><a href="#Attributes">Attributes</a></li>
+    <li><a href="#AttributesForPrimeMinisters">AttributesForPrimeMinisters</a></li>
+    <li><a href="#AttributesForTokugawaShogunate">AttributesForTokugawaShogunate</a></li>
+    <li><a href="#Tuple">Tuple</a></li>
+    <li><a href="#IO">IO</a></li>
+    <li><a href="#Reader">Reader</a></li>
+    <li><a href="#Downloader">Downloader</a></li>
+    <li><a href="#Writer">Writer</a></li>
+    <li><a href="#Makefile">Makefile</a></li>
+    <li><a href="#Buildxml">build.xml</a></li>
+    <li><a href="#PreparePMD.sh">PreparePMD.sh</a></li>
+    <li><a href="#csv2html.mf">csv2html.mf</a></li>
+  </ul>
+  <div class="belt">
+    <h3><a name="Example">Example</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Example.html">Example JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="Translator">Translator</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Translator.html">Translator JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="Table">Table</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Table.html">Table JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="Attributes">Attributes</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Attributes.html">Attributes JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="AttributesForPrimeMinisters">AttributesForPrimeMinisters</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/AttributesForPrimeMinisters">AttributesForPrimeMinisters JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="AttributesForTokugawaShogunate">AttributesForTokugawaShogunate</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/AttributesForTokugawaShogunate.html">AttributesForTokugawaShogunate JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="Tuple">Tuple</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Tuple.html">Tuple JavaDoc</a>
+
+    <div class="belt">
+    <h3><a name="IO">IO</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/IO.html">IO JavaDoc</a>
+
+    <div class="belt">
+    <h3><a name="Reader">Reader</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Reader.html">Reader JavaDoc</a>
+
+    <div class="belt">
+    <h3><a name="Downloader">Downloader</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Downloader.html">Downloader JavaDoc</a>
+
+    <div class="belt">
+    <h3><a name="Writer">Writer</a></h3>
+  </div>
+    <a href="../JavaDoc/csv2html/Writer.html">Writer JavaDoc</a>
+
+  <div class="belt">
+    <h3><a name="Makefile">Makefile</a></h3>
+  </div>
+  <pre>
+    <code>
+ANT = env LC_ALL=ja_JP.UTF-8 ant
+ARCHIVE = $(shell basename `pwd`)
+PMD_BIN = "pmd-bin"
+PMD_BASE_DIR = "pmd"
+PMD_RULES = "pmd-rules.xml"
+PMD_COMMAND = ./$(PMD_BIN)/run.sh pmd -d ./ -f textcolor -R ./$(PMD_BASE_DIR)/${PMD_RULES} -l java
+PMD_COMMAND_HTML  = ./$(PMD_BIN)/run.sh pmd -d ./ -f html -R ./$(PMD_BASE_DIR)/${PMD_RULES}  -l java
+PMD_REPORT_HTML = pmd_report.html
+
+all:
+  $(ANT) all
+
+clean:
+  $(ANT) clean
+  @find . -maxdepth 1 -name "$(PMD_REPORT_HTML)" -exec echo rm -f {} ";" -exec rm -f {} ";"
+
+test:
+  $(ANT) test
+
+install:
+  $(ANT) install
+
+#pmdの準備
+pmd_prepare:all
+  sh ./PreparePMD.sh
+
+#PMDを実行
+pmd:pmd_prepare
+  @echo $(PMD_COMMAND)
+  @eval $(PMD_COMMAND) 2> /dev/null
+
+#PMDのHTML出力
+pmd_html:pmd_prepare
+  @echo $(PMD_COMMAND_HTML) '> ./$(PMD_REPORT_HTML)'
+  -@eval $(PMD_COMMAND_HTML) > ./$(PMD_REPORT_HTML) 2> /dev/null
+  open -a 'Safari' ./$(PMD_REPORT_HTML)
+
+#JUnitの実行
+unittest:
+  $(ANT) unittest
+
+doc:
+  $(ANT) doc
+
+#PMD関連のディレクトリ・フォルダを完全に削除
+wipe:clean
+  @read -p "本当に削除しますか? (y/n): " INPUT;if [ "$${INPUT}" != 'y' ];then echo process stopped;exit 1;fi;
+  @find . -name ".DS_Store" -exec echo rm -f {} ";" -exec rm -f {} ";"
+  @find . -maxdepth 1 -name "$(PMD_BIN)" -exec echo rm -f {} ";" -exec rm -f {} ";"
+  @find . -maxdepth 1 -type d -name "$(PMD_DIR)" -exec echo rm -rf {} ";" -exec rm -rf {} ";"
+
+#zip:
+# $(ANT) zip
+zip: clean
+  (cd ../ ; zip -r ./$(ARCHIVE).zip ./$(ARCHIVE)/)
+
+      </code>
+    </pre>
+
+    <div class="belt">
+      <h3><a name="Buildxml">build.xml</a></h3>
+    </div>
+    <pre>
+      <code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;project name="CSV2HTML" default="all" basedir="."&gt;
+
+  &lt;property name="homedir" value="${user.home}" /&gt;
+  &lt;property name="package" value="csv2html" /&gt;
+  &lt;property name="utility" value="utility" /&gt;
+  &lt;property name="packagenames" value="${package},${utility}" /&gt;
+  &lt;property name="destdir" value="./Classes" /&gt;
+  &lt;property name="docdir" value="./JavaDoc" /&gt;
+  &lt;property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" /&gt;
+  &lt;property name="copyright" value="Copyright 2008-2017 AOKI Atsushi. All Rights Reserved." /&gt;
+  &lt;property name="zipname" value="${ant.project.name}" /&gt;
+  &lt;property name="junitdir" value="./junit" /&gt;
+  &lt;property name="junitjar" value="${junitdir}/junit-platform-console-standalone-1.7.2.jar" /&gt;
+  &lt;property name="reportdir" value="${junitdir}/test-report" /&gt;
+
+
+  &lt;target name="all" depends="jar" description="build all"&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="prepare" depends="" description="prepare to compile"&gt;
+    &lt;mkdir dir="${destdir}" /&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="compile" depends="prepare" description="compile all sources"&gt;
+    &lt;javac
+      fork="true"
+      srcdir="${basedir}"
+      destdir="${destdir}"
+      includeAntRuntime="true"
+      encoding="UTF-8"
+      deprecation="on"
+      verbose="false"&gt;
+      &lt;compilerarg value="-J-Dfile.encoding=UTF8" /&gt;
+      &lt;compilerarg value="-Xlint:all" /&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${utility}.jar" /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+    &lt;/javac&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="jar" depends="compile" description="make jar file"&gt;
+    &lt;jar
+      jarfile="${package}.jar"
+      basedir="${destdir}"
+      manifest="${package}.mf"&gt;
+      &lt;zipfileset src="${utility}.jar" /&gt;
+      &lt;zipfileset src="${junitjar}" /&gt;
+    &lt;/jar&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="clean" description="cleaning
+    &lt;delete dir="${destdir}" /&gt;
+    &lt;delete file="${package}.jar" /&gt;
+    &lt;delete dir="${docdir}" /&gt;
+    &lt;delete dir="${instdir}" /&gt;
+    &lt;delete file="../${zipname}.zip" /&gt;
+    &lt;delete dir="${reportdir}" /&gt;
+    &lt;delete&gt;
+      &lt;fileset dir="${package}" includes="*.class" /&gt;
+    &lt;/delete&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="test" depends="all" description="test"&gt;
+    &lt;exec executable="java" spawn="false"&gt;
+      &lt;arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar" /&gt;
+    &lt;/exec&gt;
+    <!--
+    <exec executable="open" spawn="false">
+      <arg line="${homedir}/Desktop/${ant.project.name}/index.html" />
+    </exec>
+    -->
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="install" depends="all" description="install into application"&gt;
+    &lt;copy file="${package}.jar" todir="${instdir}" /&gt;
+    &lt;exec executable="chmod"&gt;
+      &lt;arg line="755 ${instdir}/../../MacOS/applet" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="doc" depends="all" description="make document (javadoc)"&gt;
+    &lt;mkdir dir="${docdir}" /&gt;
+    &lt;javadoc
+      locale="ja_JP"
+      sourcepath="${basedir}"
+      destdir="${docdir}"
+      packagenames="${packagenames}"
+      author="true"
+      version="true"
+      charset="UTF-8"
+      encoding="UTF-8"
+      docencoding="UTF-8"
+      linksource="yes"
+      additionalparam="-J-Dfile.encoding=UTF-8"
+      access="private"&gt;
+      &lt;doctitle&gt;${doc-title}</doctitle&gt;
+      &lt;bottom&gt;${copyright}</bottom&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${utility}.jar" /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+    &lt;/javadoc&gt;
+    &lt;exec executable="open"&gt;
+      &lt;arg line="${docdir}/index.html" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  <!-- 単体テスト追加 -->
+  &lt;target name="unittest.junit.launcher" depends="all" description="junit launcher"&gt;
+    &lt;delete dir="${reportdir}" /&gt;
+    &lt;junitlauncher haltOnFailure="true" printSummary="true"&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+      &lt;testclasses outputdir="${reportdir}"&gt;
+        &lt;fileset dir="${destdir}"&gt;
+          &lt;include name="*.class"/&gt;
+        &lt;/fileset&gt;
+        &lt;listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/&gt;
+        &lt;listener type="legacy-plain" sendSysOut="true" /&gt;
+      &lt;/testclasses&gt;
+    &lt;/junitlauncher&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  <!-- 単体テスト追加 -->
+  &lt;target name="unittest.console.launcher" depends="all" description="console launcher"&gt;
+    &lt;java classpath="${package}.jar" classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="false"&gt;
+      &lt;arg value="--scan-class-path=${destdir}" /&gt;
+      &lt;arg line="--reports-dir ${reportdir}" /&gt;
+      &lt;jvmarg value="-Dfile.encoding=UTF-8" /&gt;
+    &lt;/java&gt;
+    &lt;junitreport todir="${reportdir}"&gt;
+      &lt;fileset dir="${reportdir}"&gt;
+        &lt;include name="TEST-*.xml"/&gt;
+      &lt;/fileset&gt;
+      &lt;report format="noframes" todir="${reportdir}/html"/&gt;
+    &lt;/junitreport&gt;
+    &lt;exec executable="open" spawn="true"&gt;
+      &lt;arg line="-a 'Safari' ${reportdir}/html/junit-noframes.html" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  <!-- 単体テスト -->
+  &lt;target name="unittest" depends="unittest.junit.launcher, unittest.console.launcher"&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="zip" depends="clean" description="make zip file"&gt;
+    &lt;delete file="../${zipname}.zip" /&gt;
+    &lt;zip destfile="../${zipname}.zip"&gt;
+      &lt;zipfileset dir="." prefix="${zipname}" /&gt;
+    &lt;/zip&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+&lt;/project&gt;
+      </code>
+    </pre>
+
+  <div class="belt">
+    <h3><a name="PreparePMD.sh">PreparePMD.sh</a></h3>
+  </div>
+  <pre>
+    <code>
+#!/bin/sh
+
+: &lt;&lt;EOF_COMMENT
+    PMDをダウンロード・展開し、PMDのbinディレクトリのシンボリックリンクを作成する.
+    また、pmd-rulesが存在しない場合はそれもダウンロードする
+
+    author : Okayama Kodai
+    version : 1.0.1
+EOF_COMMENT
+
+#これらはMakefileと文字列を合わせる
+PMD_BIN="pmd-bin"
+PMD_BASE_DIR="pmd"
+PMD_RULES="pmd-rules.xml"
+
+PMD_VERSION="6.40.0"
+PMD_DIR="pmd-bin-${PMD_VERSION}"
+PMD_URL="https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_VERSION}/${PMD_DIR}.zip"
+PMD_RULES_URL="https://raw.githubusercontent.com/pmd/pmd/master/pmd-java/src/main/resources/rulesets/java/quickstart.xml"
+
+if [ ! -e ${PMD_BASE_DIR} ]; then
+    mkdir ${PMD_BASE_DIR}
+fi
+
+if [ ! -f &quot;${PMD_BASE_DIR}/${PMD_RULES}&quot; ]; then
+    curl -L ${PMD_RULES_URL} -o "./${PMD_BASE_DIR}/${PMD_RULES}"
+fi
+
+if [ ! -d "${PMD_BASE_DIR}/${PMD_DIR}" ]; then
+    curl -OL ${PMD_URL}
+    unzip ${PMD_DIR}.zip -d "${PMD_BASE_DIR}/"
+    rm ${PMD_DIR}.zip
+fi
+
+ln -s "${PMD_BASE_DIR}/${PMD_DIR}/bin" ${PMD_BIN}
+
+exit 0
+
+      </code>
+    </pre>
+
+  <div class="belt">
+    <h3><a name="csv2html.mf">csv2html.mf</a></h3>
+  </div>
+  <pre>
+    <code>
+Manifest-Version: 1.0
+Main-Class: csv2html.Example
+    </code>
+    </pre>
+
+  <hr>
+  <div class="right-small">Copyright 2021 Project 総理大臣ページ生成, Updated: 2021/12/28 (Created: 2021/12/28) Created by YuriOkamoto</div>
 </body>
+
 </html>

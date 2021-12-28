@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta
+      name="keywords"
+      content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming"
+    />
+    <meta
+      name="description"
+      content="プログラミング言語「総理大臣ページ生成」"
+    />
+    <meta name="author" content="AOKI Atsushi" />
+    <link rev="made" href="mailto:atsushi@cc.kyoto-su.ac.jp" />
+    <link rel="index" href="index-j.html" />
+    <style type="text/css">
+      <!--
+      body {
+        background-color : #ffffff;
+        margin : 20px;
+        padding : 10px;
+        font-family : serif;
+        font-size : 10pt;
+      }
+      a {
+        text-decoration : underline;
+        color : #000000;
+      }
+      a:link {
+        background-color : #ffddbb;
+      }
+      a:visited {
+        background-color : #ccffcc;
+      }
+      a:hover {
+        background-color : #dddddd;
+      }
+      a:active {
+        background-color : #dddddd;
+      }
+      div.belt {
+        background-color : #eeeeee;
+        padding : 0px 4px;
+      }
+      div.belt-yellow {
+        background-color : #ffffcc;
+        padding : 0px 4px;
+      }
+      div.belt-blue {
+        background-color : #ddeeff;
+        padding : 0px 4px;
+      }
+      div.right-small {
+        text-align : right;
+        font-size : 8pt;
+      }
+      img.border {
+        border-width : 1px;
+        border-color : #000000;
+        vertical-align : middle;
+      }
+      img.borderless {
+        border-width : 0px;
+        vertical-align : middle;
+      }
+      p.belt {
+        background-color : #ffeedd;
+        padding : 4px 8px;
+      }
+      p.belt-blue {
+        background-color : #ddeeff;
+        padding : 4px 8px;
+      }
+      pre.belt {
+        background-color : #ddeeff;
+        padding : 4px 8px;
+      }
+      pre.belt-yellow {
+        background-color : #ffffcc;
+        padding : 4px 8px;
+      }
+      table {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        font-family : serif;
+        font-size : 10pt;
+      }
+      table.profile {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        font-family : serif;
+        font-size : 10pt;
+        margin-top : 8px;
+        margin-left : 8px;
+        margin-right : 8px;
+        margin-bottom : 8px;
+      }
+      table.belt {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        background-color : #ffeedd;
+        padding : 0px 0px;
+        width : 100%;
+      }
+      table.content {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 2px 4px;
+      }
+      table.font-fixed {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 2px 4px;
+        font-family : monospace;
+      }
+      table.nest {
+        border-style : solid;
+        border-width : 0px;
+        border-color : #000000;
+        padding : 0px 0px;
+      }
+      td {
+        padding : 0px 0px;
+        vertical-align : middle;
+        text-align : center ;
+      }
+      td.center {
+        text-align : center;
+      }
+      td.center-half {
+        text-align : center;
+        width : 50%;
+        font-size : 8pt;
+      }
+      td.center-small {
+        text-align : center;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.center-small-nopadding {
+        text-align : center;
+        font-size : 8pt;
+        padding : 0px 0px;
+      }
+      td.center-white {
+        text-align : center;
+        background-color : #ffffff;
+      }
+      td.center-small-white {
+        text-align : center;
+        font-size : 8pt;
+        background-color : #ffffff;
+      }
+      td.center-border1 {
+        text-align : center;
+        vertical-align : middle;
+        empty-cells : show;
+        border-style : solid;
+        border-width : 1px;
+        border-color : #ffc080;
+        width : 22px;
+        height : 22px;
+      }
+      td.left-small {
+        text-align : left;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.left-small-white {
+        text-align : left;
+        font-size : 8pt;
+        padding : 0px 4px;
+        background-color : #ffffff;
+      }
+      td.right-small {
+        text-align : right;
+        font-size : 8pt;
+        padding : 0px 4px;
+      }
+      td.right-small-white {
+        text-align : right;
+        font-size : 8pt;
+        padding : 0px 4px;
+        background-color : #ffffff;
+      }
+      th {
+        padding : 0px 0px;
+        vertical-align : middle;
+      }
+      ul {
+        text-align:left
+      }
+      #menu {
+        margin: 0px 0px 0px 0px;
+        padding: 0px;
+        height: 32px;
+      }
+      #menu ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        text-align: center;
+        clear: both;
+      }
+      #menu li {
+        margin: 0px 5px 0px 0px;
+        padding: 0px;
+        float: left;
+      }
+      #menu a {
+        display: block;
+        padding: 2px 4px;
+        text-decoration: none;
+        margin: 0px;
+        font-weight: bold;
+        background: #FFFFFF;
+        color: #333333;
+        border: 1px solid #666666;
+      }
+      #menu a:hover {
+        display: block;
+        padding: 2px 4px;
+        border-bottom: 1px solid #000000;
+        text-decoration: none;
+        background: #FFCC66;
+      }
+      #menu .current {
+        background-color: #F45F57;
+        font-weight: bold;
+        color: #FFFFFF;
+        border: 1px solid #333333;
+      }
+      -->
+    </style>
+    <title>プログラミング言語「総理大臣ページ生成」プログラム</title>
+</head>
+
+<body>
+  <div id="menu">
+    <ul>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="../Requirement/index.html">要求仕様書</a></li>
+      <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
+      <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+      <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+      <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
+      <li><a href="../TestResult/index.html">テスト結果</a></li>
+      <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
+      <li><a href="../Program/index.html" class="current">プログラム</a></li>
+      <li><a href="../Manual/index.html">マニュアル</a></li>
+    </ul>
+  </div>
+  <hr>
+  <h2>プログラミング言語「総理大臣ページ生成」プログラム</h2>
+  <div id="menu">
+    <ul>
+      <li><a href="../Program/index.html">Javaバージョン</a></li>
+      <li><a href="../Program/index2.html" class="current">Pythonバージョン</a></li>
+    </ul>
+  </div>
+  <ul>
+    <li><a href="#Example">Example</a></li>
+    <li><a href="#CSV2HTML">CSV2HTML</a></li>
+    <li><a href="#Translator">Translator</a></li>
+    <li><a href="#Table">Table</a></li>
+    <li><a href="#Attributes">Attributes</a></li>
+    <li><a href="#AttributesForPrimeMinisters">AttributesForPrimeMinisters</a></li>
+    <li><a href="#AttributesForTokugawaShogunate">AttributesForTokugawaShogunate</a></li>
+    <li><a href="#Tuple">Tuple</a></li>
+    <li><a href="#IO">IO</a></li>
+    <li><a href="#Reader">Reader</a></li>
+    <li><a href="#Downloader">Downloader</a></li>
+    <li><a href="#Writer">Writer</a></li>
+    <li><a href="#setup.py">setup.py</a></li>
+    <li><a href="#Makefile">Makefile</a></li>
+    <li><a href="#MANIFEST.in">csv2html.mf</a></li>
+  </ul>
+  <div class="belt">
+    <h3><a name="Example">Example</a></h3>
+  </div>
+    <a href="../Pydoc/example.html">Example Pydoc</a>
+
+<div class="belt">
+    <h3><a name="CSV2HTML">CSV2HTML</a></h3>
+  </div>
+    <a href="../Pydoc/csv2html.html">Example Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="Translator">Translator</a></h3>
+  </div>
+    <a href="../Pydoc/translator.html">Translator Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="Table">Table</a></h3>
+  </div>
+    <a href="../Pydoc/table.html">Table Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="Attributes">Attributes</a></h3>
+  </div>
+    <a href="../Pydoc/attributes.html">Attributes Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="AttributesForPrimeMinisters">AttributesForPrimeMinisters</a></h3>
+  </div>
+    <a href="../Pydoc/attributesForPrimeMinisters">AttributesForPrimeMinisters Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="AttributesForTokugawaShogunate">AttributesForTokugawaShogunate</a></h3>
+  </div>
+    <a href="../Pydoc/attributesForTokugawaShogunate.html">AttributesForTokugawaShogunate Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="Tuple">Tuple</a></h3>
+  </div>
+    <a href="../Pydoc/tuple.html">Tuple Pydoc</a>
+
+    <div class="belt">
+    <h3><a name="IO">IO</a></h3>
+  </div>
+    <a href="../Pydoc/io.html">IO Pydoc</a>
+
+    <div class="belt">
+    <h3><a name="Reader">Reader</a></h3>
+  </div>
+    <a href="../Pydoc/reader.html">Reader Pydoc</a>
+
+    <div class="belt">
+    <h3><a name="Downloader">Downloader</a></h3>
+  </div>
+    <a href="../Pydoc/downloader.html">Downloader Pydoc</a>
+
+    <div class="belt">
+    <h3><a name="Writer">Writer</a></h3>
+  </div>
+    <a href="../Pydoc/writer.html">Writer Pydoc</a>
+
+  <div class="belt">
+    <h3><a name="setup.py">setup.py</a></h3>
+  </div>
+    <pre>
+      <code>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+&quot;&quot;&quot;
+ソースコードディストリビューション（sdist）のための設え（しつらえ：setup）です。
+$ python setup.py sdist
+&quot;&quot;&quot;
+
+__author__ = &#039;AOKI Atsushi&#039;
+__version__ = &#039;1.0.7&#039;
+__date__ = &#039;2021/01/10 (Created: 2016/01/24)&#039;
+
+from distutils.core import setup
+import os
+import platform
+import re
+
+setup( \
+  name=re.sub(r&quot;\-[0-9]+\.[0-9]+\.[0-9]+$&quot;, &quot;&quot;, os.path.basename(os.getcwd())), \
+  version=__version__, \
+  description=&#039;CSV2HTML written by Python &#039; + &#039;.&#039;.join(platform.python_version_tuple()), \
+  url=&#039;http://www.cc.kyoto-su.ac.jp/~atsushi/&#039;, \
+  author=__author__, \
+  author_email=&#039;atsushi@cc.kyoto-su.ac.jp&#039;, \
+  license=&#039;The BSD 2-Clause License&#039;, \
+  long_description=&#039;総理大臣ページや徳川幕府ページを生成します。&#039;, \
+  platforms=&#039;macOS &#039; + platform.mac_ver()[0], \
+  packages=[&#039;csv2html&#039;], \
+)
+      </code>
+    </pre>
+
+  <div class="belt">
+    <h3><a name="Makefile">Makefile</a></h3>
+  </div>
+  <pre>
+    <code>
+PYTHON  = python3
+PYDOC = pydoc
+PYCS  = $(shell find . -name &quot;*.pyc&quot;)
+PYCACHE = $(shell find . -name &quot;__pycache__&quot;)
+TARGET  = CSV2HTML.py
+PACKAGE = csv2html
+INSTDIR = CSV2HTML.app/Contents/Resources/Python/
+ARCHIVE = $(shell basename `pwd`)
+IOTEST = csv2html/tests/python_io_test.py
+TABLETEST = csv2html/tests/python_table_test.py
+TRANSTEST = csv2html/tests/python_translator_test.py
+WORKDIR = ./
+PYLINT  = pylint
+LINTRCF = pylintrc.txt
+LINTRST = pylintresult.txt
+
+all:
+  @rm -rf ~/Desktop/CSV2HTML_[A-Za-z]*_[0-9]*
+
+clean:
+  @for each in ${PYCS} ; do echo &quot;rm -f $${each}&quot; ; rm -f $${each} ; done
+  @for each in ${PYCACHE} ; do echo &quot;rm -f $${each}&quot; ; rm -rf $${each} ; done
+  @if [ -e $(INSTDIR) ] ; then echo &quot;rm -f -r $(INSTDIR)&quot; ; rm -f -r $(INSTDIR) ; fi
+  @if [ -e $(LINTRST) ] ; then echo &quot;rm -f $(LINTRST)&quot; ; rm -f $(LINTRST) ; fi
+  @if [ -e MANIFEST ] ; then echo &quot;rm -f MANIFEST&quot; ; rm -f MANIFEST ; fi
+  @find . -name &quot;.DS_Store&quot; -exec rm {} &quot;;&quot; -exec echo rm -f {} &quot;;&quot;
+
+test:
+  $(PYTHON) $(TARGET)
+
+install:
+  @if [ ! -e $(INSTDIR) ] ; then echo &quot;mkdir $(INSTDIR)&quot; ; mkdir $(INSTDIR) ; fi
+  cp -p -r $(TARGET) $(PACKAGE) $(INSTDIR)
+
+wipe: clean
+  @find . -name &quot;.DS_Store&quot; -exec rm {} &quot;;&quot; -exec echo rm -f {} &quot;;&quot;
+  (cd ../ ; rm -f ./$(ARCHIVE).zip)
+
+zip: wipe
+  (cd ../ ; zip -r ./$(ARCHIVE).zip ./$(ARCHIVE)/ --exclude=&#039;*/.svn/*&#039;)
+
+sdist: clean
+  $(PYTHON) setup.py sdist
+
+pydoc: clean
+  (sleep 3 ; open http://localhost:9999/$(PACKAGE).html) &amp; $(PYDOC) -p 9999
+
+lint: pylint clean
+  @if [ ! -e $(LINTRCF) ] ; then $(PYLINT) --generate-rcfile &gt; $(LINTRCF) 2&gt; /dev/null ; fi
+  $(PYLINT) --rcfile=$(LINTRCF) `find . -name &quot;*.py&quot; | sort` &gt; $(LINTRST) ; less $(LINTRST)
+
+# 
+# pip is the PyPA recommended tool for installing Python packages.
+# 
+pip:
+  @if [ -z `which pip` ]; \
+  then \
+    (cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
+    (cd $(WORKDIR); sudo -H $(PYTHON) get-pip.py); \
+    (cd $(WORKDIR); rm -r get-pip.py); \
+  else \
+    (cd $(WORKDIR); sudo -H pip install -U pip); \
+  fi
+
+# 
+# Pillow is the friendly PIL fork. PIL is the Python Imaging Library.
+# 
+pil:
+  @if [ -z `pip list --format=freeze | grep Pillow` ]; \
+  then \
+    (cd $(WORKDIR); sudo -H pip install Pillow); \
+  else \
+    (cd $(WORKDIR); sudo -H pip install -U Pillow); \
+  fi
+
+# 
+# Pylint is a tool that checks for errors in Python code,
+# tries to enforce a coding standard and looks for code smells.
+# 
+pylint:
+  @if [ -z `pip list --format=freeze | grep pylint` ]; \
+  then \
+    (cd $(WORKDIR); sudo -H pip install pylint); \
+  fi
+
+# 
+# List of the required packages
+# 
+list: pip
+  @(pip list --format=freeze | grep pip)
+  @(pip list --format=freeze | grep pylint)
+  @(pip list --format=freeze | grep Pillow)
+
+prepare: pip pylint pil
+
+unittest: 
+  $(PYTHON) -m unittest $(IOTEST)
+  $(PYTHON) -m unittest $(TABLETEST)
+  $(PYTHON) -m unittest $(TRANSTEST)
+
+update: pip pylint pil
+      </code>
+    </pre>
+
+
+
+
+  <div class="belt">
+    <h3><a name="MANIFEST.in">MANIFEST.in</a></h3>
+  </div>
+  <pre>
+    <code>
+include MANIFEST.in
+include Makefile
+include CSV2HTML.py
+recursive-include CSV2HTML.app *
+recursive-include csv2html *
+    </code>
+    </pre>
+
+  <hr>
+  <div class="right-small">Copyright 2021 Project 総理大臣ページ生成, Updated: 2021/12/28 (Created: 2021/12/28) Created by YuriOkamoto</div>
+</body>
+
+</html>
