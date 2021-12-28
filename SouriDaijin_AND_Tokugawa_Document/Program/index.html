@@ -629,7 +629,7 @@ zip: clean
     <code>
 #!/bin/sh
 
-: &amp;lt;&amp;lt;EOF_COMMENT
+: &lt;&lt;EOF_COMMENT
     PMDをダウンロード・展開し、PMDのbinディレクトリのシンボリックリンクを作成する.
     また、pmd-rulesが存在しない場合はそれもダウンロードする
 
@@ -651,7 +651,7 @@ if [ ! -e ${PMD_BASE_DIR} ]; then
     mkdir ${PMD_BASE_DIR}
 fi
 
-if [ ! -f &amp;quot;${PMD_BASE_DIR}/${PMD_RULES}&amp;quot; ]; then
+if [ ! -f &quot;${PMD_BASE_DIR}/${PMD_RULES}&quot; ]; then
     curl -L ${PMD_RULES_URL} -o &quot;./${PMD_BASE_DIR}/${PMD_RULES}&quot;
 fi
 
