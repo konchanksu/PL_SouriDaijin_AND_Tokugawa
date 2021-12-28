@@ -17,6 +17,9 @@ import utility.StringUtility;
 
 /**
  * トランスレータ：CSVファイルをHTMLページへと変換するプログラム。
+ * 
+ * @author Okayama Kodai
+ * @version 3.0.0
  */
 public class Translator extends Object {
 	/**

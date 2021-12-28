@@ -2,6 +2,9 @@ package csv2html;
 
 /**
  * 属性リスト：総理大臣の情報テーブルを入出力する際の属性情報を記憶。
+ * 
+ * @author Okayama Kodai
+ * @version 2.0.0
  */
 public class AttributesForPrimeMinisters extends Attributes {
 	/**

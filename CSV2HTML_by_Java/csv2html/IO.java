@@ -10,6 +10,8 @@ import utility.StringUtility;
 
 /**
  * 入出力：リーダ・ダウンローダ・ライタを抽象する。
+ * @author Okayama Kodai
+ * @version 2.0.0
  */
 public abstract class IO extends Thread {
 	/**
