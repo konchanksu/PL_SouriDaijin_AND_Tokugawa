@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * リーダ：情報を記したCSVファイルを読み込んでテーブルに仕立て上げる。
  * 
- * @author Okayama Kodai
+ * @author Okayama Kodai (Created by Aoki Atsushi)
  * @version 2.0.0
  */
 public class Reader extends IO {
