@@ -447,100 +447,100 @@ zip: clean
     </div>
     <pre>
       <code>
-&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
-&amp;lt;project name=&quot;CSV2HTML&quot; default=&quot;all&quot; basedir=&quot;.&quot;&amp;gt;
+&lt;project name=&quot;CSV2HTML&quot; default=&quot;all&quot; basedir=&quot;.&quot;&gt;
 
-  &amp;lt;property name=&quot;homedir&quot; value=&quot;${user.home}&quot; /&amp;gt;
-  &amp;lt;property name=&quot;package&quot; value=&quot;csv2html&quot; /&amp;gt;
-  &amp;lt;property name=&quot;utility&quot; value=&quot;utility&quot; /&amp;gt;
-  &amp;lt;property name=&quot;packagenames&quot; value=&quot;${package},${utility}&quot; /&amp;gt;
-  &amp;lt;property name=&quot;destdir&quot; value=&quot;./Classes&quot; /&amp;gt;
-  &amp;lt;property name=&quot;docdir&quot; value=&quot;./JavaDoc&quot; /&amp;gt;
-  &amp;lt;property name=&quot;instdir&quot; value=&quot;./${ant.project.name}.app/Contents/Resources/Java&quot; /&amp;gt;
-  &amp;lt;property name=&quot;copyright&quot; value=&quot;Copyright 2008-2017 AOKI Atsushi. All Rights Reserved.&quot; /&amp;gt;
-  &amp;lt;property name=&quot;zipname&quot; value=&quot;${ant.project.name}&quot; /&amp;gt;
-  &amp;lt;property name=&quot;junitdir&quot; value=&quot;./junit&quot; /&amp;gt;
-  &amp;lt;property name=&quot;junitjar&quot; value=&quot;${junitdir}/junit-platform-console-standalone-1.7.2.jar&quot; /&amp;gt;
-  &amp;lt;property name=&quot;reportdir&quot; value=&quot;${junitdir}/test-report&quot; /&amp;gt;
+  &lt;property name=&quot;homedir&quot; value=&quot;${user.home}&quot; /&gt;
+  &lt;property name=&quot;package&quot; value=&quot;csv2html&quot; /&gt;
+  &lt;property name=&quot;utility&quot; value=&quot;utility&quot; /&gt;
+  &lt;property name=&quot;packagenames&quot; value=&quot;${package},${utility}&quot; /&gt;
+  &lt;property name=&quot;destdir&quot; value=&quot;./Classes&quot; /&gt;
+  &lt;property name=&quot;docdir&quot; value=&quot;./JavaDoc&quot; /&gt;
+  &lt;property name=&quot;instdir&quot; value=&quot;./${ant.project.name}.app/Contents/Resources/Java&quot; /&gt;
+  &lt;property name=&quot;copyright&quot; value=&quot;Copyright 2008-2017 AOKI Atsushi. All Rights Reserved.&quot; /&gt;
+  &lt;property name=&quot;zipname&quot; value=&quot;${ant.project.name}&quot; /&gt;
+  &lt;property name=&quot;junitdir&quot; value=&quot;./junit&quot; /&gt;
+  &lt;property name=&quot;junitjar&quot; value=&quot;${junitdir}/junit-platform-console-standalone-1.7.2.jar&quot; /&gt;
+  &lt;property name=&quot;reportdir&quot; value=&quot;${junitdir}/test-report&quot; /&gt;
 
 
-  &amp;lt;target name=&quot;all&quot; depends=&quot;jar&quot; description=&quot;build all&quot;&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;all&quot; depends=&quot;jar&quot; description=&quot;build all&quot;&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;prepare&quot; depends=&quot;&quot; description=&quot;prepare to compile&quot;&amp;gt;
-    &amp;lt;mkdir dir=&quot;${destdir}&quot; /&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;prepare&quot; depends=&quot;&quot; description=&quot;prepare to compile&quot;&gt;
+    &lt;mkdir dir=&quot;${destdir}&quot; /&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;compile&quot; depends=&quot;prepare&quot; description=&quot;compile all sources&quot;&amp;gt;
-    &amp;lt;javac
+  &lt;target name=&quot;compile&quot; depends=&quot;prepare&quot; description=&quot;compile all sources&quot;&gt;
+    &lt;javac
       fork=&quot;true&quot;
       srcdir=&quot;${basedir}&quot;
       destdir=&quot;${destdir}&quot;
       includeAntRuntime=&quot;true&quot;
       encoding=&quot;UTF-8&quot;
       deprecation=&quot;on&quot;
-      verbose=&quot;false&quot;&amp;gt;
-      &amp;lt;compilerarg value=&quot;-J-Dfile.encoding=UTF8&quot; /&amp;gt;
-      &amp;lt;compilerarg value=&quot;-Xlint:all&quot; /&amp;gt;
-      &amp;lt;classpath&amp;gt;
-        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
-        &amp;lt;pathelement location=&quot;${utility}.jar&quot; /&amp;gt;
-        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
-      &amp;lt;/classpath&amp;gt;
-    &amp;lt;/javac&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+      verbose=&quot;false&quot;&gt;
+      &lt;compilerarg value=&quot;-J-Dfile.encoding=UTF8&quot; /&gt;
+      &lt;compilerarg value=&quot;-Xlint:all&quot; /&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location=&quot;.&quot; /&gt;
+        &lt;pathelement location=&quot;${utility}.jar&quot; /&gt;
+        &lt;pathelement location=&quot;${junitjar}&quot; /&gt;
+      &lt;/classpath&gt;
+    &lt;/javac&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;jar&quot; depends=&quot;compile&quot; description=&quot;make jar file&quot;&amp;gt;
-    &amp;lt;jar
+  &lt;target name=&quot;jar&quot; depends=&quot;compile&quot; description=&quot;make jar file&quot;&gt;
+    &lt;jar
       jarfile=&quot;${package}.jar&quot;
       basedir=&quot;${destdir}&quot;
-      manifest=&quot;${package}.mf&quot;&amp;gt;
-      &amp;lt;zipfileset src=&quot;${utility}.jar&quot; /&amp;gt;
-      &amp;lt;zipfileset src=&quot;${junitjar}&quot; /&amp;gt;
-    &amp;lt;/jar&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+      manifest=&quot;${package}.mf&quot;&gt;
+      &lt;zipfileset src=&quot;${utility}.jar&quot; /&gt;
+      &lt;zipfileset src=&quot;${junitjar}&quot; /&gt;
+    &lt;/jar&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;clean&quot; description=&quot;cleaning
-    &amp;lt;delete dir=&quot;${destdir}&quot; /&amp;gt;
-    &amp;lt;delete file=&quot;${package}.jar&quot; /&amp;gt;
-    &amp;lt;delete dir=&quot;${docdir}&quot; /&amp;gt;
-    &amp;lt;delete dir=&quot;${instdir}&quot; /&amp;gt;
-    &amp;lt;delete file=&quot;../${zipname}.zip&quot; /&amp;gt;
-    &amp;lt;delete dir=&quot;${reportdir}&quot; /&amp;gt;
-    &amp;lt;delete&amp;gt;
-      &amp;lt;fileset dir=&quot;${package}&quot; includes=&quot;*.class&quot; /&amp;gt;
-    &amp;lt;/delete&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;clean&quot; description=&quot;cleaning&quot;&gt;
+    &lt;delete dir=&quot;${destdir}&quot; /&gt;
+    &lt;delete file=&quot;${package}.jar&quot; /&gt;
+    &lt;delete dir=&quot;${docdir}&quot; /&gt;
+    &lt;delete dir=&quot;${instdir}&quot; /&gt;
+    &lt;delete file=&quot;../${zipname}.zip&quot; /&gt;
+    &lt;delete dir=&quot;${reportdir}&quot; /&gt;
+    &lt;delete&gt;
+      &lt;fileset dir=&quot;${package}&quot; includes=&quot;*.class&quot; /&gt;
+    &lt;/delete&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;test&quot; depends=&quot;all&quot; description=&quot;test&quot;&amp;gt;
-    &amp;lt;exec executable=&quot;java&quot; spawn=&quot;false&quot;&amp;gt;
-      &amp;lt;arg line=&quot;-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar&quot; /&amp;gt;
-    &amp;lt;/exec&amp;gt;
+  &lt;target name=&quot;test&quot; depends=&quot;all&quot; description=&quot;test&quot;&gt;
+    &lt;exec executable=&quot;java&quot; spawn=&quot;false&quot;&gt;
+      &lt;arg line=&quot;-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar&quot; /&gt;
+    &lt;/exec&gt;
     &lt;!--
     &lt;exec executable=&quot;open&quot; spawn=&quot;false&quot;&gt;
       &lt;arg line=&quot;${homedir}/Desktop/${ant.project.name}/index.html&quot; /&gt;
     &lt;/exec&gt;
     --&gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;install&quot; depends=&quot;all&quot; description=&quot;install into application&quot;&amp;gt;
-    &amp;lt;copy file=&quot;${package}.jar&quot; todir=&quot;${instdir}&quot; /&amp;gt;
-    &amp;lt;exec executable=&quot;chmod&quot;&amp;gt;
-      &amp;lt;arg line=&quot;755 ${instdir}/../../MacOS/applet&quot; /&amp;gt;
-    &amp;lt;/exec&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;install&quot; depends=&quot;all&quot; description=&quot;install into application&quot;&gt;
+    &lt;copy file=&quot;${package}.jar&quot; todir=&quot;${instdir}&quot; /&gt;
+    &lt;exec executable=&quot;chmod&quot;&gt;
+      &lt;arg line=&quot;755 ${instdir}/../../MacOS/applet&quot; /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;doc&quot; depends=&quot;all&quot; description=&quot;make document (javadoc)&quot;&amp;gt;
-    &amp;lt;mkdir dir=&quot;${docdir}&quot; /&amp;gt;
-    &amp;lt;javadoc
+  &lt;target name=&quot;doc&quot; depends=&quot;all&quot; description=&quot;make document (javadoc)&quot;&gt;
+    &lt;mkdir dir=&quot;${docdir}&quot; /&gt;
+    &lt;javadoc
       locale=&quot;ja_JP&quot;
       sourcepath=&quot;${basedir}&quot;
       destdir=&quot;${docdir}&quot;
@@ -552,72 +552,73 @@ zip: clean
       docencoding=&quot;UTF-8&quot;
       linksource=&quot;yes&quot;
       additionalparam=&quot;-J-Dfile.encoding=UTF-8&quot;
-      access=&quot;private&quot;&amp;gt;
-      &amp;lt;doctitle&amp;gt;${doc-title}&lt;/doctitle&amp;gt;
-      &amp;lt;bottom&amp;gt;${copyright}&lt;/bottom&amp;gt;
-      &amp;lt;classpath&amp;gt;
-        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
-        &amp;lt;pathelement location=&quot;${utility}.jar&quot; /&amp;gt;
-        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
-      &amp;lt;/classpath&amp;gt;
-    &amp;lt;/javadoc&amp;gt;
-    &amp;lt;exec executable=&quot;open&quot;&amp;gt;
-      &amp;lt;arg line=&quot;${docdir}/index.html&quot; /&amp;gt;
-    &amp;lt;/exec&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+      access=&quot;private&quot;&gt;
+      &lt;doctitle&gt;${doc-title}&lt;/doctitle&gt;
+      &lt;bottom&gt;${copyright}&lt;/bottom&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location=&quot;.&quot; /&gt;
+        &lt;pathelement location=&quot;${utility}.jar&quot; /&gt;
+        &lt;pathelement location=&quot;${junitjar}&quot; /&gt;
+      &lt;/classpath&gt;
+    &lt;/javadoc&gt;
+    &lt;exec executable=&quot;open&quot;&gt;
+      &lt;arg line=&quot;${docdir}/index.html&quot; /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
   &lt;!-- 単体テスト追加 --&gt;
-  &amp;lt;target name=&quot;unittest.junit.launcher&quot; depends=&quot;all&quot; description=&quot;junit launcher&quot;&amp;gt;
-    &amp;lt;delete dir=&quot;${reportdir}&quot; /&amp;gt;
-    &amp;lt;junitlauncher haltOnFailure=&quot;true&quot; printSummary=&quot;true&quot;&amp;gt;
-      &amp;lt;classpath&amp;gt;
-        &amp;lt;pathelement location=&quot;.&quot; /&amp;gt;
-        &amp;lt;pathelement location=&quot;${junitjar}&quot; /&amp;gt;
-      &amp;lt;/classpath&amp;gt;
-      &amp;lt;testclasses outputdir=&quot;${reportdir}&quot;&amp;gt;
-        &amp;lt;fileset dir=&quot;${destdir}&quot;&amp;gt;
-          &amp;lt;include name=&quot;*.class&quot;/&amp;gt;
-        &amp;lt;/fileset&amp;gt;
-        &amp;lt;listener type=&quot;legacy-xml&quot; sendSysOut=&quot;true&quot; sendSysErr=&quot;true&quot;/&amp;gt;
-        &amp;lt;listener type=&quot;legacy-plain&quot; sendSysOut=&quot;true&quot; /&amp;gt;
-      &amp;lt;/testclasses&amp;gt;
-    &amp;lt;/junitlauncher&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;unittest.junit.launcher&quot; depends=&quot;all&quot; description=&quot;junit launcher&quot;&gt;
+    &lt;delete dir=&quot;${reportdir}&quot; /&gt;
+    &lt;junitlauncher haltOnFailure=&quot;true&quot; printSummary=&quot;true&quot;&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location=&quot;.&quot; /&gt;
+        &lt;pathelement location=&quot;${junitjar}&quot; /&gt;
+      &lt;/classpath&gt;
+      &lt;testclasses outputdir=&quot;${reportdir}&quot;&gt;
+        &lt;fileset dir=&quot;${destdir}&quot;&gt;
+          &lt;include name=&quot;*.class&quot;/&gt;
+        &lt;/fileset&gt;
+        &lt;listener type=&quot;legacy-xml&quot; sendSysOut=&quot;true&quot; sendSysErr=&quot;true&quot;/&gt;
+        &lt;listener type=&quot;legacy-plain&quot; sendSysOut=&quot;true&quot; /&gt;
+      &lt;/testclasses&gt;
+    &lt;/junitlauncher&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
   &lt;!-- 単体テスト追加 --&gt;
-  &amp;lt;target name=&quot;unittest.console.launcher&quot; depends=&quot;all&quot; description=&quot;console launcher&quot;&amp;gt;
-    &amp;lt;java classpath=&quot;${package}.jar&quot; classname=&quot;org.junit.platform.console.ConsoleLauncher&quot; fork=&quot;true&quot; failonerror=&quot;false&quot;&amp;gt;
-      &amp;lt;arg value=&quot;--scan-class-path=${destdir}&quot; /&amp;gt;
-      &amp;lt;arg line=&quot;--reports-dir ${reportdir}&quot; /&amp;gt;
-      &amp;lt;jvmarg value=&quot;-Dfile.encoding=UTF-8&quot; /&amp;gt;
-    &amp;lt;/java&amp;gt;
-    &amp;lt;junitreport todir=&quot;${reportdir}&quot;&amp;gt;
-      &amp;lt;fileset dir=&quot;${reportdir}&quot;&amp;gt;
-        &amp;lt;include name=&quot;TEST-*.xml&quot;/&amp;gt;
-      &amp;lt;/fileset&amp;gt;
-      &amp;lt;report format=&quot;noframes&quot; todir=&quot;${reportdir}/html&quot;/&amp;gt;
-    &amp;lt;/junitreport&amp;gt;
-    &amp;lt;exec executable=&quot;open&quot; spawn=&quot;true&quot;&amp;gt;
-      &amp;lt;arg line=&quot;-a &#039;Safari&#039; ${reportdir}/html/junit-noframes.html&quot; /&amp;gt;
-    &amp;lt;/exec&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;unittest.console.launcher&quot; depends=&quot;all&quot; description=&quot;console launcher&quot;&gt;
+    &lt;java classpath=&quot;${package}.jar&quot; classname=&quot;org.junit.platform.console.ConsoleLauncher&quot; fork=&quot;true&quot; failonerror=&quot;false&quot;&gt;
+      &lt;arg value=&quot;--scan-class-path=${destdir}&quot; /&gt;
+      &lt;arg line=&quot;--reports-dir ${reportdir}&quot; /&gt;
+      &lt;jvmarg value=&quot;-Dfile.encoding=UTF-8&quot; /&gt;
+    &lt;/java&gt;
+    &lt;junitreport todir=&quot;${reportdir}&quot;&gt;
+      &lt;fileset dir=&quot;${reportdir}&quot;&gt;
+        &lt;include name=&quot;TEST-*.xml&quot;/&gt;
+      &lt;/fileset&gt;
+      &lt;report format=&quot;noframes&quot; todir=&quot;${reportdir}/html&quot;/&gt;
+    &lt;/junitreport&gt;
+    &lt;exec executable=&quot;open&quot; spawn=&quot;true&quot;&gt;
+      &lt;arg line=&quot;-a &#039;Safari&#039; ${reportdir}/html/junit-noframes.html&quot; /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
   &lt;!-- 単体テスト --&gt;
-  &amp;lt;target name=&quot;unittest&quot; depends=&quot;unittest.junit.launcher, unittest.console.launcher&quot;&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
+  &lt;target name=&quot;unittest&quot; depends=&quot;unittest.junit.launcher, unittest.console.launcher&quot;&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
 
-  &amp;lt;target name=&quot;zip&quot; depends=&quot;clean&quot; description=&quot;make zip file&quot;&amp;gt;
-    &amp;lt;delete file=&quot;../${zipname}.zip&quot; /&amp;gt;
-    &amp;lt;zip destfile=&quot;../${zipname}.zip&quot;&amp;gt;
-      &amp;lt;zipfileset dir=&quot;.&quot; prefix=&quot;${zipname}&quot; /&amp;gt;
-    &amp;lt;/zip&amp;gt;
-    &amp;lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&amp;gt;
-  &amp;lt;/target&amp;gt;
-&amp;lt;/project&amp;gt;
+  &lt;target name=&quot;zip&quot; depends=&quot;clean&quot; description=&quot;make zip file&quot;&gt;
+    &lt;delete file=&quot;../${zipname}.zip&quot; /&gt;
+    &lt;zip destfile=&quot;../${zipname}.zip&quot;&gt;
+      &lt;zipfileset dir=&quot;.&quot; prefix=&quot;${zipname}&quot; /&gt;
+    &lt;/zip&gt;
+    &lt;exec executable=&quot;date&quot; spawn=&quot;false&quot; /&gt;
+  &lt;/target&gt;
+
+&lt;/project&gt;
       </code>
     </pre>
 
