@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """CSV2HTML：総理大臣と徳川幕府の情報「CSV」からWebページ「HTML」を生成。"""
-__author__ = 'AOKI Atsushi'
-__version__ = '1.0.7'
-__date__ = '2021/01/10 (Created: 2016/01/01)'
+__author__ = 'Hidemasa Kondo (Created by AOKI Atsushi)'
+__version__ = '1.3.0'
+__date__ = '2021/11/17 (Created: 2016/01/01)'
 
 import os
 
