@@ -1,17 +1,21 @@
 package csv2html;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 /**
  * 文字列のHTML記述への変換に対するテスト
+ * 
+ * @author Kajiwara Ryutaro
+ * @version 1.0.0
  */
-public class HtmlTest{
+public class HtmlTest {
 	/**
 	 * "&"を"&amp;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforAmpersandTest()
-	{
+	public void compareOriginalWordwithReritedWordforAmpersandTest() {
 		assertEquals("&amp;", IO.htmlCanonicalString("&"));
 	}
 
@@ -19,8 +23,7 @@ public class HtmlTest{
 	 * ">"を"&gt;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforBiggerthanTest()
-	{
+	public void compareOriginalWordwithReritedWordforBiggerthanTest() {
 		assertEquals("&gt;", IO.htmlCanonicalString(">"));
 	}
 
@@ -28,8 +31,7 @@ public class HtmlTest{
 	 * "<"を"&lt;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforLessthanTest()
-	{
+	public void compareOriginalWordwithReritedWordforLessthanTest() {
 		assertEquals("&lt;", IO.htmlCanonicalString("<"));
 	}
 
@@ -37,8 +39,7 @@ public class HtmlTest{
 	 * "\"を"&quot;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforBackslashTest()
-	{
+	public void compareOriginalWordwithReritedWordforBackslashTest() {
 		assertEquals("&quot;", IO.htmlCanonicalString("\""));
 	}
 
@@ -46,8 +47,7 @@ public class HtmlTest{
 	 * " "を"&nbsp;"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforNoBreakSpaceTest()
-	{
+	public void compareOriginalWordwithReritedWordforNoBreakSpaceTest() {
 		assertEquals("&nbsp;", IO.htmlCanonicalString(" "));
 	}
 
@@ -55,8 +55,7 @@ public class HtmlTest{
 	 * "\t"を""に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforTabTest()
-	{
+	public void compareOriginalWordwithReritedWordforTabTest() {
 		assertEquals("", IO.htmlCanonicalString("\t"));
 	}
 
@@ -64,8 +63,7 @@ public class HtmlTest{
 	 * "\r"を""に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforCarriageReturnTest()
-	{
+	public void compareOriginalWordwithReritedWordforCarriageReturnTest() {
 		assertEquals("", IO.htmlCanonicalString("\r"));
 	}
 
@@ -73,16 +71,15 @@ public class HtmlTest{
 	 * "\n"を"<br>"に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforLineFeedTest()
-	{
+	public void compareOriginalWordwithReritedWordforLineFeedTest() {
 		assertEquals("<br>", IO.htmlCanonicalString("\n"));
 	}
+
 	/**
 	 * "\f"を""に変換できているかのテスト
 	 */
 	@Test
-	public void compareOriginalWordwithReritedWordforFormFeedTest()
-	{
+	public void compareOriginalWordwithReritedWordforFormFeedTest() {
 		assertEquals("", IO.htmlCanonicalString("\f"));
 	}
 }

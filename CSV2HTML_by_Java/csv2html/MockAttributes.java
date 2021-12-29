@@ -2,6 +2,9 @@ package csv2html;
 
 /**
  * Attributesの具象クラス
+ * 
+ * @author Kajiwara Ryutaro
+ * @version 1.0.0
  */
 public class MockAttributes extends Attributes{
     @Override

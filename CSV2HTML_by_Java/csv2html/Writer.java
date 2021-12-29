@@ -16,6 +16,9 @@ import utility.StringUtility;
 
 /**
  * ライタ：情報のテーブルをHTMLページとして書き出す。
+ * 
+ * @author Okayama Kodai (Created by Aoki Atsushi)
+ * @version 2.0.0
  */
 public class Writer extends IO {
     /**

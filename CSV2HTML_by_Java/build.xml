@@ -9,7 +9,7 @@
 	<property name="destdir" value="./Classes" />
 	<property name="docdir" value="./JavaDoc" />
 	<property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" />
-	<property name="copyright" value="Copyright 2008-2017 AOKI Atsushi. All Rights Reserved." />
+	<property name="copyright" value="Copyright 2021 Project 総理大臣ページ作成. All Rights Reserved." />
 	<property name="zipname" value="${ant.project.name}" />
 	<property name="junitdir" value="./junit" />
 	<property name="junitjar" value="${junitdir}/junit-platform-console-standalone-1.7.2.jar" />

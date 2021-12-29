@@ -2,6 +2,9 @@ package csv2html;
 
 /**
  * 属性リスト：徳川幕府の情報テーブルを入出力する際の属性情報を記憶。
+ * 
+ * @author Okayama Kodai (Created by Aoki Atsushi)
+ * @version 2.0.0
  */
 public class AttributesForTokugawaShogunate extends Attributes {
 	/**

@@ -10,6 +10,9 @@ import utility.ImageUtility;
 
 /**
  * 表：情報テーブル。
+ * 
+ * @author Okayama Kodai (Created by Aoki Atsushi)
+ * @version 3.0.0
  */
 public class Table extends Object {
 	/**

@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 /**
  * Tableに対するテスト
- * @author RyutaroKajiwara
+ * 
+ * @author Kajiwara Ryutaro
+ * @version 1.0.0
  */
 public class TableTest {
 	/**
@@ -27,9 +29,9 @@ public class TableTest {
 
 		Tuple testCase = new Tuple(anAttributets, testValues);
 		testTuple.add(testCase);
-		
+
 		aTable.add(testCase);
 
-        assertEquals(aTable.tuples().get(0), testTuple.get(0));
-    }
+		assertEquals(aTable.tuples().get(0), testTuple.get(0));
+	}
 }

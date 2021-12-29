@@ -10,6 +10,9 @@ import utility.ImageUtility;
 
 /**
  * ダウンローダ：CSVファイル・画像ファイル・サムネイル画像ファイルをダウンロードする。
+ * 
+ * @author Okayama Kodai (Created by Aoki Atsushi)
+ * @version 3.0.1
  */
 public class Downloader extends IO {
 	/**

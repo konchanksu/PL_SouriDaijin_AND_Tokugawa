@@ -9,6 +9,9 @@ import java.util.List;
 
 /**
  * 属性リスト：情報テーブルを入出力する際の属性情報を記憶。
+ * 
+ * @author Okayama Kodai (Created by Aoki Atsushi)
+ * @version 3.0.0
  */
 abstract class Attributes extends Object {
 	/**

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Translatorに対するテスト
+ * 
+ * @author Kajiwara Ryutaro
+ * @version 1.0.0
  */
 public class TranslatorTest{
 
