@@ -1,4 +1,5 @@
 package csv2html;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * 仮のテスト
  * 動くか試すだけ
  * 
- * @author Kajiwara Ryutaro
+ * @author Kajiwara Ryutaro (Created by Okayama Kodai)
  * @version 1.0.0
  */
 class SampleTest {
