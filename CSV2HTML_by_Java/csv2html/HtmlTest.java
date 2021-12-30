@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  */
 public class HtmlTest {
 	/**
-	 * "&"を"&amp;"に変換できているかのテスト
+	 * "&amp;"を"&amp;amp;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforAmpersandTest() {
@@ -20,7 +20,7 @@ public class HtmlTest {
 	}
 
 	/**
-	 * ">"を"&gt;"に変換できているかのテスト
+	 * "&gt;"を"&amp;gt;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforBiggerthanTest() {
@@ -28,7 +28,7 @@ public class HtmlTest {
 	}
 
 	/**
-	 * "<"を"&lt;"に変換できているかのテスト
+	 * "&lt;"を"&amp;lt;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforLessthanTest() {
@@ -36,7 +36,7 @@ public class HtmlTest {
 	}
 
 	/**
-	 * "\"を"&quot;"に変換できているかのテスト
+	 * "&quot;"を"&amp;quot;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforBackslashTest() {
@@ -44,7 +44,7 @@ public class HtmlTest {
 	}
 
 	/**
-	 * " "を"&nbsp;"に変換できているかのテスト
+	 * "&nbsp;"を"&amp;nbsp;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforNoBreakSpaceTest() {
@@ -68,13 +68,13 @@ public class HtmlTest {
 	}
 
 	/**
-	 * "\n"を"<br>"に変換できているかのテスト
+	 * "\n"を"&lt;br&gt;"に変換できているかのテスト
 	 */
 	@Test
 	public void compareOriginalWordwithReritedWordforLineFeedTest() {
 		assertEquals("<br>", IO.htmlCanonicalString("\n"));
 	}
-
+	
 	/**
 	 * "\f"を""に変換できているかのテスト
 	 */
